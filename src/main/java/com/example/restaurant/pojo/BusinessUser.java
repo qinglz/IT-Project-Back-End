@@ -20,6 +20,15 @@ public class BusinessUser {
         this.email = email;
         this.password = password;
     }
+
+    public BusinessUser(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public BusinessUser() {
+    }
+
     @Override
     public String toString() {
         return "BusinessUser{" +

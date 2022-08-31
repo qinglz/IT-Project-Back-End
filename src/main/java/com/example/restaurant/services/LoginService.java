@@ -3,6 +3,7 @@ package com.example.restaurant.services;
 
 import com.example.restaurant.pojo.Booking;
 import com.example.restaurant.pojo.BusinessUser;
+import com.example.restaurant.pojo.SignUpInfo;
 import com.example.restaurant.repository.LoginRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,16 @@ public class LoginService {
             return true;
         }
 
+    }
+    public boolean verifySignUp(SignUpInfo signUpInfo){
+        BusinessUser businessUser = loginRepository.findBusinessUserByEmail(signUpInfo.getEmail());
+        if(businessUser != null){
+            return false;
+        }else {
+            BusinessUser newBusinessUser = new BusinessUser(signUpInfo.getEmail(),signUpInfo.getPassword());
+            loginRepository.insert(newBusinessUser);
+            return true;
+        }
     }
 
 
