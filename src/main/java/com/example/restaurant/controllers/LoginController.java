@@ -3,6 +3,7 @@ package com.example.restaurant.controllers;
 import com.example.restaurant.Result;
 import com.example.restaurant.pojo.Booking;
 import com.example.restaurant.pojo.BusinessUser;
+import com.example.restaurant.pojo.Restaurant;
 import com.example.restaurant.pojo.SignUpInfo;
 import com.example.restaurant.services.LoginService;
 import com.example.restaurant.services.servicesImp.LoginServiceImp;
@@ -20,11 +21,7 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    @GetMapping("findAllBooking")
-    public Result<List<Booking>> getAllBooking(){
-        return Result.success(loginService.getAllBooking());
 
-    }
     @GetMapping("verifyAccount")
     public Result<BusinessUser> login(@RequestParam("email")String email, @RequestParam("password")String password){
         BusinessUser businessUser = loginService.userLogin(email,password);

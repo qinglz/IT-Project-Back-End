@@ -17,15 +17,9 @@ import java.util.List;
 @Service
 public class LoginServiceImp implements LoginService {
     private static Logger logger= LoggerFactory.getLogger(LoginServiceImp.class);
-    @Autowired
-    MongoTemplate mongoTemplate;
+
     @Autowired
     LoginRepository loginRepository;
-
-    public List<Booking> getAllBooking(){
-
-        return mongoTemplate.findAll(Booking.class);
-    }
 
     public BusinessUser userLogin(String email, String password){
         BusinessUser businessUser = loginRepository.findBusinessUserByEmail(email);
