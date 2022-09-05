@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Restaurant {
     @Id
     private String id;
+
+    private BusinessUser businessUser;
     private String name;
     private String address;
     private int averageBill;
