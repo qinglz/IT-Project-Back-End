@@ -1,12 +1,8 @@
 package com.example.restaurant.services;
 
-import com.example.restaurant.pojo.Booking;
-import com.example.restaurant.pojo.BusinessUser;
-import com.example.restaurant.pojo.SignUpInfo;
-
-import java.util.List;
+import com.example.restaurant.Result;
 
 public interface LoginService {
-    public BusinessUser userLogin(String email, String password);
-    public boolean userSignUp(SignUpInfo signUpInfo);
+    public Result userLogin(String email, String password);
+    public Result userSignUp(String name, String email, String password);
 }

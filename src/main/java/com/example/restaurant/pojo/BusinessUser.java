@@ -11,6 +11,7 @@ public class BusinessUser {
 
     @Id
     private String id;
+    private String name;
     private Restaurant restaurantName;
     private String email;
     private String password;
@@ -21,7 +22,8 @@ public class BusinessUser {
         this.password = password;
     }
 
-    public BusinessUser(String email, String password) {
+    public BusinessUser(String name, String email, String password) {
+        this.name = name;
         this.email = email;
         this.password = password;
     }
@@ -49,6 +51,14 @@ public class BusinessUser {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Restaurant getRestaurantName() {
