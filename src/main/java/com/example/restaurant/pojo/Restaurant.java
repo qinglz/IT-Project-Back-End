@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Restaurant {
     @Id
     private String id;
-
+    private double similarity;
     private BusinessUser businessUser;
     private String name;
     private String address;
@@ -30,6 +30,7 @@ public class Restaurant {
         this.numOfStaffs = numOfStaffs;
         this.capacity = capacity;
     }
+    public Restaurant(){}
 
     public Restaurant(String name, String address, int averageBill, int capacity, String photo, int numOfStaffs) {
     }
@@ -111,5 +112,13 @@ public class Restaurant {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public void setSimilarity(double similarity) {
+        this.similarity = similarity;
+    }
+
+    public double getSimilarity() {
+        return similarity;
     }
 }

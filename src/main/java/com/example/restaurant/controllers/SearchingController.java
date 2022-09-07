@@ -6,6 +6,7 @@ import com.example.restaurant.services.SearchingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,19 +20,21 @@ public class SearchingController {
     SearchingService searchingService;
 
 
-    @GetMapping("allRestaurant")
+    @GetMapping("/allRestaurants")
     public Result<List<Restaurant>> getAllRestaurant(){
         return Result.success(searchingService.getAllRestaurant());
 
     }
 
-    @GetMapping("findRestaurantByName")
+    @GetMapping("/findRestaurantByName")
     public Result<List<Restaurant>> getAllRestaurant(@RequestParam("name") String name){
         List<Restaurant> restaurants = searchingService.findRestaurantByName(name);
         if(restaurants.size()>0){
             return Result.success(restaurants);
         }
         return Result.error("No Restaurant Found");
+
+
 
 
     }
