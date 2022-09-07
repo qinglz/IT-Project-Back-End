@@ -11,10 +11,10 @@ public class BusinessUser {
 
     @Id
     private String id;
-    private String restaurantName;
+    private Restaurant restaurantName;
     private String email;
     private String password;
-    public BusinessUser(String id, String restaurantName, String email, String password) {
+    public BusinessUser(String id, Restaurant restaurantName, String email, String password) {
         this.id = id;
         this.restaurantName = restaurantName;
         this.email = email;
@@ -51,7 +51,7 @@ public class BusinessUser {
         return password;
     }
 
-    public String getRestaurantName() {
+    public Restaurant getRestaurantName() {
         return restaurantName;
     }
 
@@ -67,7 +67,7 @@ public class BusinessUser {
         this.password = password;
     }
 
-    public void setRestaurantName(String restaurantName) {
+    public void setRestaurantName(Restaurant restaurantName) {
         this.restaurantName = restaurantName;
     }
 

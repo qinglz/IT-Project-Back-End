@@ -4,9 +4,12 @@ public class SignUpInfo {
     private String email;
     private String password;
 
-    public SignUpInfo(String email, String password) {
+    private String restaurantName;
+
+    public SignUpInfo(String email, String password, String restaurantName) {
         this.email = email;
         this.password = password;
+        this.restaurantName = restaurantName;
     }
 
     public String getEmail() {
@@ -23,5 +26,13 @@ public class SignUpInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 }

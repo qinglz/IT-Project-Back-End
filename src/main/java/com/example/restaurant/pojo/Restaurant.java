@@ -31,6 +31,16 @@ public class Restaurant {
         this.capacity = capacity;
     }
 
+    public Restaurant(String name, String address, int averageBill, int capacity, String photo, int numOfStaffs) {
+    }
+
+    public Restaurant(String name, String address, int averageBill, int capacity, String photo, int numOfStaffs,
+                      String[] tags) {
+    }
+
+    public Restaurant(String restaurantName) {
+    }
+
     public String getId() {
         return id;
     }
