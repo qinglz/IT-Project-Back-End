@@ -5,11 +5,10 @@ import com.example.restaurant.repository.SearchingRepository;
 import com.example.restaurant.services.SearchingService;
 import com.example.restaurant.untils.RestaurantSimilarityComparer;
 import info.debatty.java.stringsimilarity.Cosine;
-import info.debatty.java.stringsimilarity.Levenshtein;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 @Service
