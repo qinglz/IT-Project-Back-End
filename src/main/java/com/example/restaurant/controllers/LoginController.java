@@ -16,16 +16,16 @@ public class LoginController {
     LoginService loginService;
 
 
-    @GetMapping("verifyAccount")
+    @GetMapping("/verifyAccount")
     public Result<BusinessUser> login(@RequestParam("email")String email, @RequestParam("password")String password){
         return loginService.userLogin(email,password);
 
 
     }
 
-    @PostMapping("signUpAccount")
-    public Result<BusinessUser> signUpAccount(@RequestParam String name,@RequestParam String email, @RequestParam String password){
-        return loginService.userSignUp(name,email,password);
+    @PostMapping("/signUpAccount")
+    public Result<BusinessUser> signUpAccount(@RequestBody BusinessUser businessUser){
+        return loginService.userSignUp(businessUser);
 
     }
 

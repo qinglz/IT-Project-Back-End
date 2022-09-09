@@ -1,7 +1,7 @@
 package com.example.restaurant.services.servicesImp;
 
 import com.example.restaurant.pojo.Restaurant;
-import com.example.restaurant.repository.SearchingRepository;
+import com.example.restaurant.mapper.SearchingMapper;
 import com.example.restaurant.services.SearchingService;
 import com.example.restaurant.untils.RestaurantSimilarityComparer;
 import info.debatty.java.stringsimilarity.Cosine;
@@ -15,22 +15,22 @@ import java.util.List;
 public class SearchingServiceImp implements SearchingService {
 
     @Autowired
-    SearchingRepository searchingRepository;
+    SearchingMapper searchingMapper;
     @Override
     public List<Restaurant> getAllRestaurant() {
-        return searchingRepository.findAll();
+        return searchingMapper.selectList(null);
     }
 
     @Override
     public List<Restaurant> findRestaurantByName(String name) {
         List<String> parts = List.of(name.split(" "));
-        String regex = "((?i)";
+        String regex = ".*(";
         for(String part : parts){
             regex +=part+"|";
         }
         regex = regex.substring(0,regex.length()-1);
-        regex+=")";
-        List<Restaurant> restaurants = searchingRepository.findAllByNameLike(regex);
+        regex+=").*";
+        List<Restaurant> restaurants = searchingMapper.searchRestaurantByName(regex);
         Cosine cosine = new Cosine();
         for(Restaurant r :restaurants){
             r.setSimilarity(cosine.similarity(r.getName(),name));

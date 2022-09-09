@@ -1,82 +1,73 @@
 package com.example.restaurant.pojo;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.sql.Date;
 
-@Document("Booking")
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("sys_booking")
 public class Booking {
-    private String restaurantName;
-    private String firstName;
-    private String lastName;
-    private int phoneNumber;
-    private String email;
-    private ZonedDateTime dateTime;
+    private int id;
+    private String tableId;
+    private String customerName;
+    private int customerPhoneNumber;
+    private String customerEmail;
+    private Date dateTime;
     private int numPeople;
-    private String occasion;
+//    private String occasion;
     private String specialConsideration;
 
-
-
-    public Booking(String restaurantName, String firstName, String lastName, int phoneNumber,
-                   String email, ZonedDateTime dateTime, int numPeople, String occasion, String specialConsideration) {
-        this.restaurantName = restaurantName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.dateTime = dateTime;
-        this.numPeople = numPeople;
-        this.occasion = occasion;
-        this.specialConsideration = specialConsideration;
+    public int getId() {
+        return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getTableId() {
+        return tableId;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setTableId(String tableId) {
+        this.tableId = tableId;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public String getRestaurantName() {
-        return restaurantName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+    public int getCustomerPhoneNumber() {
+        return customerPhoneNumber;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
+    public void setCustomerPhoneNumber(int customerPhoneNumber) {
+        this.customerPhoneNumber = customerPhoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public String getEmail() {
-        return email;
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public ZonedDateTime getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(ZonedDateTime dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -86,14 +77,6 @@ public class Booking {
 
     public void setNumPeople(int numPeople) {
         this.numPeople = numPeople;
-    }
-
-    public String getOccasion() {
-        return occasion;
-    }
-
-    public void setOccasion(String occasion) {
-        this.occasion = occasion;
     }
 
     public String getSpecialConsideration() {

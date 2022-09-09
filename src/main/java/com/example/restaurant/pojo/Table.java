@@ -1,62 +1,59 @@
 package com.example.restaurant.pojo;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Document("Table")
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("sys_table")
 public class Table {
-    @Id
-    private String id;
+    private int id;
+    private int restaurantId;
     private int capacity;
     private int tableNumber;
     private String type;
-    private String status;
 
-    public Table(String id, int capacity, int tableNumber, String type, String status) {
-        this.id = id;
-        this.capacity = capacity;
-        this.tableNumber = tableNumber;
-        this.type = type;
-        this.status = status;
+    public int getId() {
+        return id;
     }
 
-    public String getId() {
-        return id;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public int getTableNumber() {
-        return tableNumber;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public int getTableNumber() {
+        return tableNumber;
     }
 
     public void setTableNumber(int tableNumber) {
         this.tableNumber = tableNumber;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getType() {
+        return type;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setType(String type) {
+        this.type = type;
     }
 }

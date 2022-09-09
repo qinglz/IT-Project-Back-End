@@ -1,64 +1,52 @@
 package com.example.restaurant.pojo;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Document("Restaurant")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("sys_restaurant")
+
 public class Restaurant {
-    @Id
-    private String id;
+
+    private int id;
     //used for searching only
     private double similarity;
-    private String businessUserName;
+    private int ownerId;
     private String name;
     private String address;
     private int averageBill;
     private String photoURL;
     private double rating;
     private String[] tags;
-    private int numOfStaffs;
+    private int numStaff;
     private int capacity;
 
-    public Restaurant(String id, String name, String address, int averageBill, String photoURL, double rating,String businessUserName,
-                      String[] tags, int numOfStaffs, int capacity) {
-        this.name = name;
-        this.id = id;
-        this.businessUserName = businessUserName;
-        this.address = address;
-        this.averageBill = averageBill;
-        this.photoURL = photoURL;
-        this.rating = rating;
-        this.tags = tags;
-        this.numOfStaffs = numOfStaffs;
-        this.capacity = capacity;
-    }
-    public Restaurant(){}
-
-    public Restaurant(String name, String address, int averageBill, int capacity, String photo, int numOfStaffs, String businessUserName){
-        this.name = name;
-        this.address = address;
-        this.averageBill = averageBill;
-        this.capacity = capacity;
-        this.photoURL = photo;
-        this.numOfStaffs = numOfStaffs;
-        this.businessUserName = businessUserName;
-
-    }
-
-    public Restaurant(String name, String address, int averageBill, int capacity, String photo, int numOfStaffs,
-                      String[] tags) {
-    }
-
-    public Restaurant(String restaurantName) {
-        this.name = restaurantName;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public double getSimilarity() {
+        return similarity;
+    }
+
+    public void setSimilarity(double similarity) {
+        this.similarity = similarity;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
     public String getName() {
@@ -85,12 +73,12 @@ public class Restaurant {
         this.averageBill = averageBill;
     }
 
-    public String getPhoto() {
+    public String getPhotoURL() {
         return photoURL;
     }
 
-    public void setPhoto(String photo) {
-        this.photoURL = photo;
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 
     public double getRating() {
@@ -109,12 +97,12 @@ public class Restaurant {
         this.tags = tags;
     }
 
-    public int getNumOfStaffs() {
-        return numOfStaffs;
+    public int getNumStaff() {
+        return numStaff;
     }
 
-    public void setNumOfStaffs(int numOfStaffs) {
-        this.numOfStaffs = numOfStaffs;
+    public void setNumStaff(int numStaff) {
+        this.numStaff = numStaff;
     }
 
     public int getCapacity() {
@@ -123,13 +111,5 @@ public class Restaurant {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    public void setSimilarity(double similarity) {
-        this.similarity = similarity;
-    }
-
-    public double getSimilarity() {
-        return similarity;
     }
 }

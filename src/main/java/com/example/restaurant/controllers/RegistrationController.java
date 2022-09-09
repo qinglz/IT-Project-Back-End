@@ -14,7 +14,7 @@ public class RegistrationController {
     @Autowired
     RegistrationService registrationService;
 
-    @PostMapping("registration")
+    @PostMapping("/registration")
     public Result registerRestaurant(@RequestBody Restaurant restaurant){
         return registrationService.restaurantRegister(restaurant);
 

@@ -3,7 +3,7 @@ package com.example.restaurant.services.servicesImp;
 
 import com.example.restaurant.Result;
 import com.example.restaurant.pojo.BusinessUser;
-import com.example.restaurant.repository.LoginRepository;
+import com.example.restaurant.mapper.LoginMapper;
 import com.example.restaurant.services.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginServiceImp implements LoginService {
     private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.][a-z]*$";
-    private final String passwordFormat = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$";
+    private final String passwordFormat = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$";
     private static Logger logger= LoggerFactory.getLogger(LoginServiceImp.class);
 
     @Autowired
-    LoginRepository loginRepository;
+    LoginMapper loginMapper;
 
     public Result userLogin(String email, String password){
-        BusinessUser businessUser = loginRepository.findBusinessUserByEmail(email);
+        BusinessUser businessUser = loginMapper.selectByEmail(email);
         if(businessUser==null){
             return Result.error("The account of this email doesn't exist");
         }else if(!businessUser.getPassword().equals(password)){
@@ -30,24 +30,24 @@ public class LoginServiceImp implements LoginService {
         }
 
     }
-    public Result userSignUp(String name, String email, String password){
+    public Result userSignUp(BusinessUser businessUser){
 
-        if(!email.matches(emailFormat)){
+        if(!businessUser.getEmail().matches(emailFormat)){
             return Result.error("Incorrect email format");
         }
-        if(!password.matches(passwordFormat)){
-            return Result.error("Weak password. One upper case letter, one lower case letter and one number are required");
+        if(!businessUser.getPassword().matches(passwordFormat)){
+            return Result.error("Invalid password. The length of password should be 8-16, " +
+                    "containing at least one upper case letter, one lower case letter and one number");
         }
 
 
 
-        BusinessUser businessUser = loginRepository.findBusinessUserByEmail(email);
-        if(businessUser != null){
+        BusinessUser oldBusinessUser = loginMapper.selectByEmail(businessUser.getEmail());
+        if(oldBusinessUser!= null){
             return Result.error("This email has been used");
         }else {
-            BusinessUser newBusinessUser = new BusinessUser(name,email,password);
-            loginRepository.insert(newBusinessUser);
-            return Result.success(newBusinessUser);
+            loginMapper.insert(businessUser);
+            return Result.success(businessUser);
         }
     }
 

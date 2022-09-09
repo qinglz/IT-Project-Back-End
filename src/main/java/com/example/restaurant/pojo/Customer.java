@@ -1,20 +1,18 @@
 package com.example.restaurant.pojo;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Document
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Customer {
     private String firstName;
     private String lastName;
     private int phoneNumber;
     private String email;
 
-    public Customer(String firstName, String lastName, int phoneNumber, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
 
     public String getFirstName() {
         return firstName;
