@@ -17,6 +17,7 @@ public class LoginController {
 
 
     @PostMapping("/verifyAccount")
+    @ResponseBody
     public Result<BusinessUser> login(@RequestBody BusinessUser businessUser){
         return loginService.userLogin(businessUser);
 

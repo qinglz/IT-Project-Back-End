@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -20,6 +22,7 @@ public class LoginServiceImp implements LoginService {
     private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.][a-z]*$";
     private final String passwordFormat = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$";
     private static Logger logger= LoggerFactory.getLogger(LoginServiceImp.class);
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     LoginMapper loginMapper;
@@ -30,14 +33,13 @@ public class LoginServiceImp implements LoginService {
     public Result userLogin(BusinessUser businessUser){
         UsernamePasswordAuthenticationToken authenticationToken = new
                 UsernamePasswordAuthenticationToken(businessUser.getEmail(), businessUser.getPassword());
-
-        Authentication authentication = authenticationManager.authenticate(authenticationToken);
+            Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
         if (Objects.isNull(authentication)){
             throw new RuntimeException("Login Failed");
         }
 
-        return null;
+        return Result.success(authentication);
 
 
 //        BusinessUser businessUser = loginMapper.selectByEmail(email);
@@ -68,8 +70,9 @@ public class LoginServiceImp implements LoginService {
         if(oldBusinessUser!= null){
             return Result.error("This email has been used");
         }else {
-            loginMapper.insert(businessUser);
-            return Result.success(businessUser);
+            BusinessUser newBusinessUser = new BusinessUser(businessUser.getName(), businessUser.getEmail(),passwordEncoder.encode(businessUser.getPassword()));
+            loginMapper.insert(newBusinessUser);
+            return Result.success(userLogin(businessUser));
         }
     }
 
