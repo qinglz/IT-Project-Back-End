@@ -8,6 +8,7 @@ import com.example.restaurant.services.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,9 @@ public class LoginServiceImp implements LoginService {
 
     @Autowired
     LoginMapper loginMapper;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     public Result userLogin(String email, String password){
         BusinessUser businessUser = loginMapper.selectByEmail(email);
