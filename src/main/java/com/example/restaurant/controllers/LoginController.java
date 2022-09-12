@@ -16,9 +16,9 @@ public class LoginController {
     LoginService loginService;
 
 
-    @GetMapping("/verifyAccount")
-    public Result<BusinessUser> login(@RequestParam("email")String email, @RequestParam("password")String password){
-        return loginService.userLogin(email,password);
+    @PostMapping("/verifyAccount")
+    public Result<BusinessUser> login(@RequestBody BusinessUser businessUser){
+        return loginService.userLogin(businessUser);
 
 
     }

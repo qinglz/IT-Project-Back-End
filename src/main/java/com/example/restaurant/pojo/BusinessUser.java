@@ -21,6 +21,11 @@ public class BusinessUser {
         this.password = password;
     }
 
+    public BusinessUser(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }

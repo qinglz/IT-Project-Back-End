@@ -9,7 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 public class LoginServiceImp implements LoginService {
@@ -23,17 +27,31 @@ public class LoginServiceImp implements LoginService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    public Result userLogin(String email, String password){
-        BusinessUser businessUser = loginMapper.selectByEmail(email);
-        if(businessUser==null){
-            return Result.error("The account of this email doesn't exist");
-        }else if(!businessUser.getPassword().equals(password)){
-            return Result.error("Incorrect password");
-        }else {
-            return Result.success(businessUser);
+    public Result userLogin(BusinessUser businessUser){
+        UsernamePasswordAuthenticationToken authenticationToken = new
+                UsernamePasswordAuthenticationToken(businessUser.getEmail(), businessUser.getPassword());
+
+        Authentication authentication = authenticationManager.authenticate(authenticationToken);
+
+        if (Objects.isNull(authentication)){
+            throw new RuntimeException("Login Failed");
         }
 
+        return null;
+
+
+//        BusinessUser businessUser = loginMapper.selectByEmail(email);
+//        if(businessUser==null){
+//            return Result.error("The account of this email doesn't exist");
+//        }else if(!businessUser.getPassword().equals(password)){
+//            return Result.error("Incorrect password");
+//        }else {
+//            return Result.success(businessUser);
+//        }
+
     }
+
+
     public Result userSignUp(BusinessUser businessUser){
 
         if(!businessUser.getEmail().matches(emailFormat)){
