@@ -37,7 +37,7 @@ public class LoginServiceImp implements LoginService {
             throw new RuntimeException("Login Failed");
         }
 
-        return null;
+        return Result.success(authentication);
 
 
 //        BusinessUser businessUser = loginMapper.selectByEmail(email);

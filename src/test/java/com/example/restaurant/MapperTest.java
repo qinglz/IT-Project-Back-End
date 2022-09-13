@@ -22,7 +22,7 @@ public class MapperTest {
 
 
         System.out.println(passwordEncoder.matches("1234",
-                "$2a$10$NKCwYrjGDfkteM7p22m5veUB8ery2uV/AampXJylbqBZtdn0PAeGi"));
+                "$2a$10$nrAmcbNPJFr2Tisjk.1arOnqiBukepaC50NAeVG05YRra8aIoEzUq"));
 
 //        $2a$10$NKCwYrjGDfkteM7p22m5veUB8ery2uV/AampXJylbqBZtdn0PAeGi
 //        String encode = passwordEncoder.encode("1234");
