@@ -21,14 +21,19 @@ public class MapperTest {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
+<<<<<<< HEAD
         System.out.println(passwordEncoder.matches("1234",
                 "$2a$10$nrAmcbNPJFr2Tisjk.1arOnqiBukepaC50NAeVG05YRra8aIoEzUq"));
+=======
+//        System.out.println(passwordEncoder.matches("1234",
+//                "$2a$10$NKCwYrjGDfkteM7p22m5veUB8ery2uV/AampXJylbqBZtdn0PAeGi"));
+>>>>>>> f549f7e574dc12e7c05cd606fc78b67f3aa549d5
 
 //        $2a$10$NKCwYrjGDfkteM7p22m5veUB8ery2uV/AampXJylbqBZtdn0PAeGi
-//        String encode = passwordEncoder.encode("1234");
+        String encode = passwordEncoder.encode("2222jZ222");
 //        String encode2 = passwordEncoder.encode("1234");
 //
-//        System.out.println(encode);
+        System.out.println(encode);
 //        System.out.println(encode2);
     }
 

@@ -14,7 +14,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f549f7e574dc12e7c05cd606fc78b67f3aa549d5
 @Service
 public class UserDetailsServiceImp implements UserDetailsService {
     @Autowired
@@ -23,9 +26,10 @@ public class UserDetailsServiceImp implements UserDetailsService {
     public UserDetailsServiceImp(){};
 
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-        LambdaQueryWrapper<BusinessUser> queryWrapper = new LambdaQueryWrapper();
-        queryWrapper.eq(BusinessUser::getEmail, userEmail);
-        BusinessUser businessUser = this.loginMapper.selectOne(queryWrapper);
+//        LambdaQueryWrapper<BusinessUser> queryWrapper = new LambdaQueryWrapper();
+//        queryWrapper.eq(BusinessUser::getEmail, userEmail);
+//        BusinessUser businessUser = this.loginMapper.selectOne(queryWrapper);
+          BusinessUser businessUser = loginMapper.selectByEmail(userEmail);
         if (Objects.isNull(businessUser)) {
             throw new RuntimeException("Wrong email or password");
         } else {

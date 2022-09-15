@@ -4,15 +4,22 @@ package com.example.restaurant.services.servicesImp;
 import com.example.restaurant.Result;
 import com.example.restaurant.pojo.BusinessUser;
 import com.example.restaurant.mapper.LoginMapper;
+import com.example.restaurant.pojo.LoginUser;
 import com.example.restaurant.services.LoginService;
+import com.example.restaurant.untils.JwtUtil;
+import com.example.restaurant.untils.RedisCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -20,6 +27,7 @@ public class LoginServiceImp implements LoginService {
     private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.][a-z]*$";
     private final String passwordFormat = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$";
     private static Logger logger= LoggerFactory.getLogger(LoginServiceImp.class);
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     LoginMapper loginMapper;
@@ -27,17 +35,29 @@ public class LoginServiceImp implements LoginService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private RedisCache redisCache;
+
     public Result userLogin(BusinessUser businessUser){
         UsernamePasswordAuthenticationToken authenticationToken = new
                 UsernamePasswordAuthenticationToken(businessUser.getEmail(), businessUser.getPassword());
-
-        Authentication authentication = authenticationManager.authenticate(authenticationToken);
+            Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
         if (Objects.isNull(authentication)){
             throw new RuntimeException("Login Failed");
         }
 
-        return Result.success(authentication);
+        // 认证通过，通过user email生成一个jwt， jwt存入response result返回
+        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+        String user_email = loginUser.getUsername().toString();
+        String jwt = JwtUtil.createJWT(user_email);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("token", jwt);
+
+        redisCache.setCacheObject("login:" + user_email, loginUser);
+
+        return Result.success("Login Successfully");
 
 
 //        BusinessUser businessUser = loginMapper.selectByEmail(email);
@@ -68,8 +88,9 @@ public class LoginServiceImp implements LoginService {
         if(oldBusinessUser!= null){
             return Result.error("This email has been used");
         }else {
-            loginMapper.insert(businessUser);
-            return Result.success(businessUser);
+            BusinessUser newBusinessUser = new BusinessUser(businessUser.getName(), businessUser.getEmail(),passwordEncoder.encode(businessUser.getPassword()));
+            loginMapper.insert(newBusinessUser);
+            return Result.success(userLogin(businessUser));
         }
     }
 
