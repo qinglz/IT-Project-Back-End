@@ -14,10 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-<<<<<<< HEAD
 
-=======
->>>>>>> f549f7e574dc12e7c05cd606fc78b67f3aa549d5
+
+
 @Service
 public class UserDetailsServiceImp implements UserDetailsService {
     @Autowired
