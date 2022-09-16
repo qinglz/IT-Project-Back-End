@@ -38,15 +38,15 @@ public class LoginServiceImp implements LoginService {
     @Autowired
     private RedisCache redisCache;
 
-    public Result userLogin(BusinessUser businessUser){
+    public Result userLogin(Map<String,String> loginInfo) {
         UsernamePasswordAuthenticationToken authenticationToken = new
-                UsernamePasswordAuthenticationToken(businessUser.getEmail(), businessUser.getPassword());
-            Authentication authentication = authenticationManager.authenticate(authenticationToken);
-
-        if (Objects.isNull(authentication)){
-            throw new RuntimeException("Login Failed");
+                UsernamePasswordAuthenticationToken(loginInfo.get("email"), loginInfo.get("password"));
+        Authentication authentication;
+        try {
+            authentication = authenticationManager.authenticate(authenticationToken);
+        } catch (AuthenticationException e) {
+            return Result.error("Account doesn't exist, or incorrect password");
         }
-
         // 认证通过，通过user email生成一个jwt， jwt存入response result返回
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
         String user_email = loginUser.getUsername().toString();
@@ -55,9 +55,9 @@ public class LoginServiceImp implements LoginService {
         Map<String, String> map = new HashMap<>();
         map.put("token", jwt);
 
-        redisCache.setCacheObject("login:" + user_email, loginUser);
+//        redisCache.setCacheObject("login:" + user_email, loginUser);
 
-        return Result.success("Login Successfully");
+        return Result.success(jwt);
 
 
 //        BusinessUser businessUser = loginMapper.selectByEmail(email);
@@ -72,25 +72,26 @@ public class LoginServiceImp implements LoginService {
     }
 
 
-    public Result userSignUp(BusinessUser businessUser){
+    public Result userSignUp(Map<String, String> signupInfo){
 
-        if(!businessUser.getEmail().matches(emailFormat)){
+        if(!signupInfo.get("email").matches(emailFormat)){
             return Result.error("Incorrect email format");
         }
-        if(!businessUser.getPassword().matches(passwordFormat)){
+        if(!signupInfo.get("password").matches(passwordFormat)){
             return Result.error("Invalid password. The length of password should be 8-16, " +
                     "containing at least one upper case letter, one lower case letter and one number");
         }
 
 
 
-        BusinessUser oldBusinessUser = loginMapper.selectByEmail(businessUser.getEmail());
+        BusinessUser oldBusinessUser = loginMapper.selectByEmail(signupInfo.get("email"));
         if(oldBusinessUser!= null){
             return Result.error("This email has been used");
         }else {
-            BusinessUser newBusinessUser = new BusinessUser(businessUser.getName(), businessUser.getEmail(),passwordEncoder.encode(businessUser.getPassword()));
+            BusinessUser newBusinessUser = new BusinessUser(signupInfo.get("name"), signupInfo.get("email"),passwordEncoder.encode(signupInfo.get("password")));
             loginMapper.insert(newBusinessUser);
-            return Result.success(userLogin(businessUser));
+            return userLogin(signupInfo);
+//            return null;
         }
     }
 

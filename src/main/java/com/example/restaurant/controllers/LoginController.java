@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 public class LoginController {
     private static Logger logger= LoggerFactory.getLogger(LoginController.class);
@@ -18,15 +20,15 @@ public class LoginController {
 
     @PostMapping("/verifyAccount")
     @ResponseBody
-    public Result<BusinessUser> login(@RequestBody BusinessUser businessUser){
-        return loginService.userLogin(businessUser);
+    public Result<BusinessUser> login(@RequestBody Map<String, String> loginInfo){
+        return loginService.userLogin(loginInfo);
 
 
     }
 
     @PostMapping("/signUpAccount")
-    public Result<BusinessUser> signUpAccount(@RequestBody BusinessUser businessUser){
-        return loginService.userSignUp(businessUser);
+    public Result<BusinessUser> signUpAccount(@RequestBody Map<String, String> signupInfo){
+        return loginService.userSignUp(signupInfo);
 
     }
 

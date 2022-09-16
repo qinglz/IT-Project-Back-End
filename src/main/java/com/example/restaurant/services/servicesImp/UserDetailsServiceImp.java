@@ -30,7 +30,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 //        BusinessUser businessUser = this.loginMapper.selectOne(queryWrapper);
           BusinessUser businessUser = loginMapper.selectByEmail(userEmail);
         if (Objects.isNull(businessUser)) {
-            throw new RuntimeException("Wrong email or password");
+            return null;
         } else {
 
 //            TO DO: 根据查询用户权限信息，添加到LoginUser中
