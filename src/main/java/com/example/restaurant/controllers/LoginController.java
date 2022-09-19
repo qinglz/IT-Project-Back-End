@@ -20,7 +20,8 @@ public class LoginController {
 
     @PostMapping("/verifyAccount")
     @ResponseBody
-    public Result<BusinessUser> login(@RequestBody Map<String, String> loginInfo){
+    public Result<BusinessUser> login(@RequestBody Map<String, String
+                > loginInfo){
         return loginService.userLogin(loginInfo);
 
 

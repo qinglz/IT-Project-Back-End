@@ -1,4 +1,4 @@
-package com.example.restaurant.untils;
+package com.example.restaurant.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundSetOperations;

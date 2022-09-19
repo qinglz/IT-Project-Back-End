@@ -5,6 +5,7 @@ import com.example.restaurant.pojo.BusinessUser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
@@ -14,7 +15,8 @@ public class MapperTest {
 
     @Autowired
     private LoginMapper loginMapper;
-
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Test
     public void TestBCryptPasswordEncoder(){
@@ -35,6 +37,19 @@ public class MapperTest {
 //
         System.out.println(encode);
 //        System.out.println(encode2);
+    }
+    @Test
+    public void testRedisTemplate(){
+        String s = redisTemplate.opsForValue().get("aaa").toString();
+        System.out.println(s);
+    }
+    @Test
+    public void deleteValue(){
+        redisTemplate.delete("name");
+    }
+    @Test
+    public void setNewValue(){
+        redisTemplate.opsForValue().set("aaa","dawdsadwdsdsds");
     }
 
 }

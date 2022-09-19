@@ -1,4 +1,4 @@
-package com.example.restaurant.untils;
+package com.example.restaurant.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;

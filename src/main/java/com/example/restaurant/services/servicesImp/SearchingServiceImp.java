@@ -3,7 +3,7 @@ package com.example.restaurant.services.servicesImp;
 import com.example.restaurant.pojo.Restaurant;
 import com.example.restaurant.mapper.SearchingMapper;
 import com.example.restaurant.services.SearchingService;
-import com.example.restaurant.untils.RestaurantSimilarityComparer;
+import com.example.restaurant.utils.RestaurantSimilarityComparer;
 import info.debatty.java.stringsimilarity.Cosine;
 
 import org.springframework.beans.factory.annotation.Autowired;

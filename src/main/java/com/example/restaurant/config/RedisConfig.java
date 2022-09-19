@@ -1,6 +1,6 @@
 package com.example.restaurant.config;
 
-import com.example.restaurant.untils.FastJsonRedisSerializer;
+import com.example.restaurant.utils.FastJsonRedisSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

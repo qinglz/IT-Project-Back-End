@@ -6,8 +6,8 @@ import com.example.restaurant.pojo.BusinessUser;
 import com.example.restaurant.mapper.LoginMapper;
 import com.example.restaurant.pojo.LoginUser;
 import com.example.restaurant.services.LoginService;
-import com.example.restaurant.untils.JwtUtil;
-import com.example.restaurant.untils.RedisCache;
+import com.example.restaurant.utils.JwtUtil;
+import com.example.restaurant.utils.RedisCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class LoginServiceImp implements LoginService {
@@ -55,9 +55,9 @@ public class LoginServiceImp implements LoginService {
         Map<String, String> map = new HashMap<>();
         map.put("token", jwt);
 
-//        redisCache.setCacheObject("login:" + user_email, loginUser);
-
-        return Result.success(jwt);
+        redisCache.setCacheObject("login:" + user_email, loginUser,1, TimeUnit.DAYS);
+//
+        return Result.success(map);
 
 
 //        BusinessUser businessUser = loginMapper.selectByEmail(email);
@@ -86,9 +86,11 @@ public class LoginServiceImp implements LoginService {
 
         BusinessUser oldBusinessUser = loginMapper.selectByEmail(signupInfo.get("email"));
         if(oldBusinessUser!= null){
+            System.out.println(oldBusinessUser);
             return Result.error("This email has been used");
+
         }else {
-            BusinessUser newBusinessUser = new BusinessUser(signupInfo.get("name"), signupInfo.get("email"),passwordEncoder.encode(signupInfo.get("password")));
+            BusinessUser newBusinessUser = new BusinessUser(signupInfo.get("fullName"), signupInfo.get("email"),passwordEncoder.encode(signupInfo.get("password")));
             loginMapper.insert(newBusinessUser);
             return userLogin(signupInfo);
 //            return null;

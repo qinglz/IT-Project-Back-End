@@ -1,7 +1,6 @@
-package com.example.restaurant.untils;
+package com.example.restaurant.utils;
 
 import com.example.restaurant.pojo.Restaurant;
-import info.debatty.java.stringsimilarity.Cosine;
 
 import java.util.Comparator;
 
