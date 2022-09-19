@@ -1,8 +1,8 @@
 package com.example.restaurant.filter;
 
 import com.example.restaurant.pojo.LoginUser;
-import com.example.restaurant.untils.JwtUtil;
-import com.example.restaurant.untils.RedisCache;
+import com.example.restaurant.utils.JwtUtil;
+import com.example.restaurant.utils.RedisCache;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -54,7 +54,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         String redisKey = "login:" + userEmail;
         LoginUser loginUser = redisCache.getCacheObject(redisKey);
         if (Objects.isNull(loginUser)){
-            throw new RuntimeException("login unsuccessfully");
+                    throw new RuntimeException("login unsuccessfully");
         }
 
 
