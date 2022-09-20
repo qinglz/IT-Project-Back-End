@@ -1,6 +1,6 @@
 package com.example.restaurant.services;
 
-import com.example.restaurant.pojo.Restaurant;
+import com.example.restaurant.entities.Restaurant;
 
 import java.util.List;
 

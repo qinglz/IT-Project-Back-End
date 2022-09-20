@@ -1,6 +1,6 @@
 package com.example.restaurant.services.servicesImp;
 
-import com.example.restaurant.pojo.Restaurant;
+import com.example.restaurant.entities.Restaurant;
 import com.example.restaurant.mapper.SearchingMapper;
 import com.example.restaurant.services.SearchingService;
 import com.example.restaurant.utils.RestaurantSimilarityComparer;

@@ -1,7 +1,7 @@
 package com.example.restaurant.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.restaurant.pojo.Restaurant;
+import com.example.restaurant.entities.Restaurant;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

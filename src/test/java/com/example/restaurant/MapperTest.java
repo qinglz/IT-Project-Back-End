@@ -1,14 +1,11 @@
 package com.example.restaurant;
 
 import com.example.restaurant.mapper.LoginMapper;
-import com.example.restaurant.pojo.BusinessUser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.util.List;
 
 @SpringBootTest
 public class MapperTest {

@@ -1,9 +1,8 @@
-package com.example.restaurant.pojo;
+package com.example.restaurant.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.xml.transform.Result;
 import java.util.Collection;
 
 public class LoginUser implements UserDetails {

@@ -2,9 +2,9 @@ package com.example.restaurant.services.servicesImp;
 
 
 import com.example.restaurant.Result;
-import com.example.restaurant.pojo.BusinessUser;
+import com.example.restaurant.entities.BusinessUser;
 import com.example.restaurant.mapper.LoginMapper;
-import com.example.restaurant.pojo.LoginUser;
+import com.example.restaurant.entities.LoginUser;
 import com.example.restaurant.services.LoginService;
 import com.example.restaurant.utils.JwtUtil;
 import com.example.restaurant.utils.RedisCache;

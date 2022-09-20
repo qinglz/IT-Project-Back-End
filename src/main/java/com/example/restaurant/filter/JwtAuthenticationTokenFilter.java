@@ -1,6 +1,6 @@
 package com.example.restaurant.filter;
 
-import com.example.restaurant.pojo.LoginUser;
+import com.example.restaurant.entities.LoginUser;
 import com.example.restaurant.utils.JwtUtil;
 import com.example.restaurant.utils.RedisCache;
 import io.jsonwebtoken.Claims;

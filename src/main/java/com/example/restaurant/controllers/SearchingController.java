@@ -1,7 +1,7 @@
 package com.example.restaurant.controllers;
 
 import com.example.restaurant.Result;
-import com.example.restaurant.pojo.Restaurant;
+import com.example.restaurant.entities.Restaurant;
 import com.example.restaurant.services.SearchingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

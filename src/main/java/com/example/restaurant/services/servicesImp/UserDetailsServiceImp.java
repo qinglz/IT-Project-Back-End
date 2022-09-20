@@ -1,18 +1,14 @@
 package com.example.restaurant.services.servicesImp;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.example.restaurant.Result;
 import com.example.restaurant.mapper.LoginMapper;
-import com.example.restaurant.pojo.BusinessUser;
-import com.example.restaurant.pojo.LoginUser;
-import com.example.restaurant.pojo.Restaurant;
+import com.example.restaurant.entities.BusinessUser;
+import com.example.restaurant.entities.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 
 

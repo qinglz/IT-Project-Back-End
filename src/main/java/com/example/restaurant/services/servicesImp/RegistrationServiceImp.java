@@ -2,7 +2,7 @@ package com.example.restaurant.services.servicesImp;
 
 import com.example.restaurant.Result;
 import com.example.restaurant.mapper.SearchingMapper;
-import com.example.restaurant.pojo.Restaurant;
+import com.example.restaurant.entities.Restaurant;
 import com.example.restaurant.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

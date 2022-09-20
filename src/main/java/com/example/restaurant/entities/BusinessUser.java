@@ -1,4 +1,4 @@
-package com.example.restaurant.pojo;
+package com.example.restaurant.entities;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
