@@ -68,7 +68,7 @@ public class MapperTest {
         String from = TimeUtil.toSqlDateTime(localDateTime1);
         String to = TimeUtil.toSqlDateTime(localDateTime2);
 //        List<Table> tables = bookingMapper.getAvailableTable(1,from,to);
-        System.out.println(bookingController.checkAvailability(4,2,localDateTime1));
+        System.out.println(LocalDateTime.parse("2022-09-22T14:30:00"));
     }
 
 }
