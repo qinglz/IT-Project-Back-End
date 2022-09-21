@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,10 +25,14 @@ public class BookingController {
     @GetMapping("/checkAvailability")
     public Result checkAvailability(@RequestBody Map<String,String> info){
         if (bookingService.availableAt(Integer.parseInt(info.get("restId")),Integer.parseInt(info.get("numPeople")),LocalDateTime.parse(info.get("dateTime")))){
-            return Result.success("There's table for you!");
+            return Result.success("We got tables for you!");
         }else {
             return Result.error("There's no table available at that time.");
         }
+    }
+    @PostMapping("/addBooking")
+    public Result addBooking(@RequestBody Map<String,String> bookingInfo){
+        return bookingService.addBooking(bookingInfo);
     }
     //to do: add a new booking
 }

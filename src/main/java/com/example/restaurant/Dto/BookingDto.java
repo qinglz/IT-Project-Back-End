@@ -1,43 +1,29 @@
-package com.example.restaurant.entities;
+package com.example.restaurant.Dto;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@TableName("sys_booking")
-public class Booking {
-    private int id;
-    private String tableId;
+@AllArgsConstructor
+public class BookingDto {
+    private String restaurantName;
     private String customerName;
     private String customerPhoneNumber;
     private String customerEmail;
     private LocalDateTime dateTime;
+    private int tableNumber;
     private int numPeople;
-//    private String occasion;
-    private String specialConsideration;
-    public int getId() {
-        return id;
+
+    public String getRestaurantName() {
+        return restaurantName;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTableId() {
-        return tableId;
-    }
-
-    public void setTableId(String tableId) {
-        this.tableId = tableId;
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 
     public String getCustomerName() {
@@ -72,19 +58,19 @@ public class Booking {
         this.dateTime = dateTime;
     }
 
+    public int getTableNumber() {
+        return tableNumber;
+    }
+
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
+    }
+
     public int getNumPeople() {
         return numPeople;
     }
 
     public void setNumPeople(int numPeople) {
         this.numPeople = numPeople;
-    }
-
-    public String getSpecialConsideration() {
-        return specialConsideration;
-    }
-
-    public void setSpecialConsideration(String specialConsideration) {
-        this.specialConsideration = specialConsideration;
     }
 }

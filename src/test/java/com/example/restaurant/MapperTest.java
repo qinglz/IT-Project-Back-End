@@ -5,6 +5,9 @@ import com.example.restaurant.entities.Booking;
 import com.example.restaurant.entities.Table;
 import com.example.restaurant.mapper.BookingMapper;
 import com.example.restaurant.mapper.LoginMapper;
+import com.example.restaurant.services.BookingService;
+import com.example.restaurant.utils.TableAllocation;
+import com.example.restaurant.utils.TableCapacityComparator;
 import com.example.restaurant.utils.TimeUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @SpringBootTest
@@ -29,6 +33,8 @@ public class MapperTest {
     private BookingMapper bookingMapper;
     @Autowired
     BookingController bookingController;
+    @Autowired
+    BookingService bookingService;
     @Test
     public void TestBCryptPasswordEncoder(){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -67,8 +73,28 @@ public class MapperTest {
         LocalDateTime localDateTime2 = LocalDateTime.of(2022,9,23,15,30,0);
         String from = TimeUtil.toSqlDateTime(localDateTime1);
         String to = TimeUtil.toSqlDateTime(localDateTime2);
-//        List<Table> tables = bookingMapper.getAvailableTable(1,from,to);
         System.out.println(LocalDateTime.parse("2022-09-22T14:30:00"));
+    }
+    @Test
+    void testComparator(){
+        LocalDateTime localDateTime1 = LocalDateTime.of(2022,9,2,13,30,0);
+        List<Table> tables = bookingService.getAvailableTable(1,localDateTime1);
+        Collections.sort(tables,new TableCapacityComparator());
+        System.out.println(tables);
+
+    }
+    @Test
+    void testAllocate(){
+        LocalDateTime localDateTime1 = LocalDateTime.of(2022,9,2,13,30,0);
+        List<Table> tables = bookingService.getAvailableTable(1,localDateTime1);
+        Collections.sort(tables,new TableCapacityComparator());
+        List<Table> allocatedTables = TableAllocation.allocate(10,tables);
+        System.out.println(tables);
+        System.out.println(allocatedTables);
+    }
+    @Test
+    void bookingDtoTest(){
+        System.out.println(bookingMapper.getBookingsByRestId(1));
     }
 
 }
