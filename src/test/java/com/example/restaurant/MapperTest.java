@@ -1,11 +1,22 @@
 package com.example.restaurant;
 
+import com.example.restaurant.controllers.BookingController;
+import com.example.restaurant.entities.Booking;
+import com.example.restaurant.entities.Table;
+import com.example.restaurant.mapper.BookingMapper;
 import com.example.restaurant.mapper.LoginMapper;
+import com.example.restaurant.utils.TimeUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 public class MapperTest {
@@ -14,7 +25,10 @@ public class MapperTest {
     private LoginMapper loginMapper;
     @Autowired
     private RedisTemplate redisTemplate;
-
+    @Autowired
+    private BookingMapper bookingMapper;
+    @Autowired
+    BookingController bookingController;
     @Test
     public void TestBCryptPasswordEncoder(){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -47,6 +61,14 @@ public class MapperTest {
     @Test
     public void setNewValue(){
         redisTemplate.opsForValue().set("aaa","dawdsadwdsdsds");
+    }
+    @Test void testAvailableTableSearching(){
+        LocalDateTime localDateTime1 = LocalDateTime.of(2022,9,22,13,30,0);
+        LocalDateTime localDateTime2 = LocalDateTime.of(2022,9,23,15,30,0);
+        String from = TimeUtil.toSqlDateTime(localDateTime1);
+        String to = TimeUtil.toSqlDateTime(localDateTime2);
+//        List<Table> tables = bookingMapper.getAvailableTable(1,from,to);
+        System.out.println(bookingController.checkAvailability(4,2,localDateTime1));
     }
 
 }

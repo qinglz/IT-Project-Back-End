@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -18,7 +20,7 @@ public class Booking {
     private String customerName;
     private int customerPhoneNumber;
     private String customerEmail;
-    private Date dateTime;
+    private LocalDateTime dateTime;
     private int numPeople;
 //    private String occasion;
     private String specialConsideration;
@@ -63,11 +65,11 @@ public class Booking {
         this.customerEmail = customerEmail;
     }
 
-    public Date getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 

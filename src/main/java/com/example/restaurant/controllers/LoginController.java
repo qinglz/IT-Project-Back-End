@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 public class LoginController {
-    private static Logger logger= LoggerFactory.getLogger(LoginController.class);
+//    private static Logger logger= LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     LoginService loginService;

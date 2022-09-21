@@ -65,5 +65,15 @@ public class Result<T>{
     public void setMap(Map map) {
         this.map = map;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                ", map=" + map +
+                '}';
+    }
 }
 

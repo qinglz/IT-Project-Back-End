@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 public class SearchingController {
-    private static Logger logger= LoggerFactory.getLogger(LoginController.class);
+//    private static Logger logger= LoggerFactory.getLogger(LoginController.class);
     @Autowired
     SearchingService searchingService;
 
