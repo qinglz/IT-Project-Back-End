@@ -23,7 +23,11 @@ public class LoginController {
     public Result<BusinessUser> login(@RequestBody Map<String, String> loginInfo){
         return loginService.userLogin(loginInfo);
 
+    }
 
+    @PostMapping("/signOutAccount")
+    public Result logout(){
+        return loginService.userLogout();
     }
 
     @PostMapping("/signUpAccount")

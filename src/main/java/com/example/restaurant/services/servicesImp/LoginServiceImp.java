@@ -15,6 +15,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +61,7 @@ public class LoginServiceImp implements LoginService {
         return Result.success(map);
 
 
+
 //        BusinessUser businessUser = loginMapper.selectByEmail(email);
 //        if(businessUser==null){
 //            return Result.error("The account of this email doesn't exist");
@@ -68,6 +70,16 @@ public class LoginServiceImp implements LoginService {
 //        }else {
 //            return Result.success(businessUser);
 //        }
+
+    }
+
+
+    public Result userLogout(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+        String userEmail = loginUser.getUsername();
+        redisCache.deleteObject("Login: " + userEmail);
+        return Result.success("Log Out successfully!");
 
     }
 
