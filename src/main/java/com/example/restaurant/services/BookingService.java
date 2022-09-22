@@ -15,4 +15,5 @@ public interface BookingService {
     public List<Table> getAvailableTable(int restId, LocalDateTime dateTime);
     public boolean availableAt(int restId, int numPeople, LocalDateTime dateTime);
     public Result addBooking(Map<String,String> bookingInfo);
+    public boolean notOverBook(Map<String,String> bookingInfo);
 }

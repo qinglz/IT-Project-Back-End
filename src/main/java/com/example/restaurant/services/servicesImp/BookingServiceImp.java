@@ -20,6 +20,10 @@ import java.util.*;
 @Service
 public class BookingServiceImp implements BookingService {
     private final Duration timeSpan = Duration.ofMinutes(59L);
+    private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.][a-z]*$";
+    private final String phoneFormat = "^0\\d{9}$";
+    private final String nameFormat = "^[A-Z a-z]+$";
+
     @Autowired
     SearchingMapper searchingMapper;
     @Autowired
@@ -61,15 +65,31 @@ public class BookingServiceImp implements BookingService {
 
     @Override
     public Result addBooking(Map<String,String> bookingInfo) {
-        int restId = Integer.parseInt(bookingInfo.get("restId"));
-        int numPeople = Integer.parseInt(bookingInfo.get("numPeople"));
+        String restIds = bookingInfo.get("restId");
+        String numPeoples = bookingInfo.get("numPeople");
         String costumeName = bookingInfo.get("name");
         String phoneNumber = bookingInfo.get("phoneNumber");
         String email = bookingInfo.get("email");
+        if(!costumeName.matches(nameFormat)){
+            return Result.error("Incorrect name format.");
+        }else if(!phoneNumber.matches(phoneFormat)){
+            return Result.error("Incorrect phone number format.");
+        }else if(email!=null&&!email.matches(emailFormat)){
+            return Result.error("Incorrect email format.");
+        }
         LocalDateTime dateTime = LocalDateTime.parse(bookingInfo.get("dateTime"));
+        if(restIds==null||numPeoples==null
+        ||costumeName==null||phoneNumber==null||dateTime==null){
+            return Result.error("Missing required booking information!");
+        }
+        int restId = Integer.parseInt(restIds);
+        int numPeople = Integer.parseInt(numPeoples);
         Boolean stillAvailable = availableAt(restId,numPeople,dateTime);
         if(!stillAvailable){
-            return Result.error("Oops, the tables have just booked by others");
+            return Result.error("Oops, the tables have just booked by others!");
+        }
+        if(!notOverBook(bookingInfo)){
+            return Result.error("You have other conflicting reservations during this period!");
         }
         List<Table> tables = getAvailableTable(restId,dateTime);
         Collections.sort(tables,new TableCapacityComparator());
@@ -89,5 +109,15 @@ public class BookingServiceImp implements BookingService {
         }
         return Result.success(bookings);
 
+    }
+
+    @Override
+    public boolean notOverBook(Map<String, String> bookingInfo) {
+        String phoneNumber = bookingInfo.get("phoneNumber");
+        LocalDateTime dateTime = LocalDateTime.parse(bookingInfo.get("dateTime"));
+        LocalDateTime from = dateTime.minus(timeSpan);
+        LocalDateTime to = dateTime.plus(timeSpan);
+        List<Booking> overlapBookings = bookingMapper.getBookingByUserAndTime(phoneNumber,from,to);
+        return overlapBookings.isEmpty();
     }
 }

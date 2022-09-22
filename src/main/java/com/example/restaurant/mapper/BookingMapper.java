@@ -43,4 +43,7 @@ public interface BookingMapper extends BaseMapper<Booking> {
             "EXISTS (Select * From `sys_booking` as b WHERE b.table_id = t.id and b.date_time BETWEEN #{from} and\n" +
             "#{to});")
     public Integer getUsedCapacity(@Param("restId") int restId, @Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
+    @Select("SELECT * from sys_booking where customer_phone_number=#{phone} and\n" +
+            "date_time BETWEEN #{from} and #{to};")
+    public List<Booking> getBookingByUserAndTime(@Param("phone") String phone, @Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
 }
