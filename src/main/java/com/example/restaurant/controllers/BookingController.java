@@ -28,6 +28,7 @@ public class BookingController {
 
 
     /**
+     * This API is for Post HttpRequest, and request a body with format as following:
      * @param info {"restId",value,"numPeople",value,"dateTime":"yyyy-MM-DDTHH:mm:ss"}
      *             yyyy is for year. MM for month. DD for dayInMonth. T is just a Letter for parsing,don't change it.
      *             HH for hour(in 24), mm for minutes, ss for second.
@@ -43,6 +44,7 @@ public class BookingController {
     }
 
     /**
+     * This API is for Post HttpRequest, and request a body with format as following:
      * @param bookingInfo {"restId",value,"numPeople",value,"dateTime":"yyyy-MM-DDTHH:mm:ss","name":value,"phoneNumber":value}("email",value)
      *                    attribute in {} is required in () is optional.
      *                    yyyy is for year. MM for month. DD for dayInMonth. T is just a letter T,don't change it(parsing format).

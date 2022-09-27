@@ -26,6 +26,7 @@ public class SearchingController {
     }
 
     /**
+     * This Api is for Get HttpRequest. To use this API, add the param after the address. e.g. /findRestaurantByName?name=Chicken.
      * @param name the name of restaurant
      * @return a list of restaurants that contain the name input.
      */
