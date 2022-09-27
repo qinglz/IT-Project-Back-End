@@ -25,6 +25,10 @@ public class SearchingController {
 
     }
 
+    /**
+     * @param name the name of restaurant
+     * @return a list of restaurants that contain the name input.
+     */
     @GetMapping("/findRestaurantByName")
     public Result<List<Restaurant>> getAllRestaurant(@RequestParam("name") String name){
         List<Restaurant> restaurants = searchingService.findRestaurantByName(name);

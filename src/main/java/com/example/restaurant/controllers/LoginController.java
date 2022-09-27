@@ -18,6 +18,10 @@ public class LoginController {
     LoginService loginService;
 
 
+    /**
+     * @param loginInfo {"email":value,"password":value}
+     * @return Result show if login successfully. If login successfully, result will contain a token in Result.data.
+     */
     @PostMapping("/verifyAccount")
     @ResponseBody
     public Result<BusinessUser> login(@RequestBody Map<String, String> loginInfo){
@@ -30,6 +34,11 @@ public class LoginController {
         return loginService.userLogout();
     }
 
+    /**
+     * @param signupInfo {"email":value,"password":value}
+     * @return Result show if sign up successfully. If sign up successfully, this method will automatically call login method
+     * and result will contain a token in Result.data.
+     */
     @PostMapping("/signUpAccount")
     public Result<BusinessUser> signUpAccount(@RequestBody Map<String, String> signupInfo){
         return loginService.userSignUp(signupInfo);
