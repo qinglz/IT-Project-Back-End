@@ -75,7 +75,7 @@ public class LoginServiceImp implements LoginService {
 
 
     public Result userLogout(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
         String userEmail = loginUser.getUsername();
         redisCache.deleteObject("Login: " + userEmail);
