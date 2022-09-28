@@ -26,7 +26,7 @@ public class SmsSender {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
         Message message = Message.creator(new PhoneNumber(smsDetails.getTo()),
-                new PhoneNumber(TWI_NUMBER), smsDetails.getMessage()).create();
+                TWI_NUMBER, smsDetails.getMessage()).create();
 
         System.out.println("Here is my id: " + message.getSid());
 
