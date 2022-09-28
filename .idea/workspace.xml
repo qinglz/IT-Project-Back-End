@@ -8,20 +8,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/BookingServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/BookingServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/utils/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/utils/EmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/utils/SmsSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/utils/SmsSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/Dto/BookingDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/Dto/BookingDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/controllers/BookingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/controllers/BookingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/controllers/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/controllers/RegistrationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/controllers/SearchingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/controllers/SearchingController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/entities/LoginUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/entities/LoginUser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/entities/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/entities/Restaurant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/mapper/SearchingMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/mapper/SearchingMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/RegistrationService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/BookingServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/BookingServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/LoginServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/LoginServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/RegistrationServiceImp.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,20 +52,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="show.migrate.to.gradle.popup" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
