@@ -20,9 +20,10 @@ import java.util.*;
 
 @Service
 public class BookingServiceImp implements BookingService {
-    private final Duration timeSpan = Duration.ofMinutes(59L);
+    private final Duration timeSpan = Duration.ofMinutes(119L);
     private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.][a-z]*$";
     private final String phoneFormat = "^\\d{9}$";
+    private final String timeFormat = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$";
     private final String nameFormat = "^[A-Z a-z]+$";
 
     @Autowired
@@ -75,54 +76,64 @@ public class BookingServiceImp implements BookingService {
         String costumeName = bookingInfo.get("name");
         String phoneNumber = bookingInfo.get("phoneNumber");
         String email = bookingInfo.get("email");
-        if(!costumeName.matches(nameFormat)){
-            return Result.error("Incorrect name format.");
-        }else if(!phoneNumber.matches(phoneFormat)){
-            return Result.error("Incorrect phone number format.");
-        }else if(email!=null&&!email.matches(emailFormat)){
-            return Result.error("Incorrect email format.");
-        }
-        LocalDateTime dateTime = LocalDateTime.parse(bookingInfo.get("dateTime"));
-        if(restIds==null||numPeoples==null
-        ||costumeName==null||phoneNumber==null||dateTime==null){
+        String dateTimes = bookingInfo.get("dateTime");
+        if (restIds == null || numPeoples == null
+                || costumeName == null || phoneNumber == null || dateTimes == null) {
             return Result.error("Missing required booking information!");
         }
+        if (!costumeName.matches(nameFormat)) {
+            return Result.error("Incorrect name format.");
+        } else if (!phoneNumber.matches(phoneFormat)) {
+            return Result.error("Incorrect phone number format.");
+        } else if (email != null && !email.matches(emailFormat)) {
+            return Result.error("Incorrect email format.");
+        } else if (!dateTimes.matches(timeFormat)){
+            return Result.error("Incorrect time format");
+        }
+
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimes);
         int restId = Integer.parseInt(restIds);
         int numPeople = Integer.parseInt(numPeoples);
-        Boolean stillAvailable = availableAt(restId,numPeople,dateTime);
-        if(!stillAvailable){
+        Boolean stillAvailable = availableAt(restId, numPeople, dateTime);
+        if (!stillAvailable) {
             return Result.error("Oops, the tables have just booked by others!");
         }
-        if(!notOverBook(bookingInfo)){
+        if (!notOverBook(bookingInfo)) {
             return Result.error("You have other conflicting reservations during this period!");
         }
-//        try {
-        List<Table> tables = getAvailableTable(restId,dateTime);
-        Collections.sort(tables,new TableCapacityComparator());
-        List<Table> allocatedTables = TableAllocation.allocate(numPeople,tables);
-        Restaurant restaurant = searchingMapper.findRestaurantById(restIds);
-        String restName = restaurant.getName();
-        //Maybe using BookingDto later
-        List<BookingDto> bookingDtos = new ArrayList<>();
-        for (Table table : allocatedTables){
-            Booking booking = new Booking();
-            booking.setCustomerPhoneNumber(phoneNumber);
-            booking.setCustomerEmail(email);
-            booking.setCustomerName(costumeName);
-            booking.setDateTime(dateTime);
-            booking.setTableId(String.valueOf(table.getId()));
-            booking.setNumPeople(numPeople);
-            bookingMapper.insert(booking);
-            BookingDto bookingDto = new BookingDto(restName,costumeName,phoneNumber,email,dateTime,table.getTableNumber(),numPeople);
-            bookingDtos.add(bookingDto);
+        String restName;
+        List<BookingDto> bookingDtos;
+        Restaurant restaurant;
+        try {
+            List<Table> tables = getAvailableTable(restId, dateTime);
+            tables.sort(new TableCapacityComparator());
+            List<Table> allocatedTables = TableAllocation.allocate(numPeople, tables);
+            restaurant = searchingMapper.findRestaurantById(restIds);
+            restName = restaurant.getName();
+            //Maybe using BookingDto later
+            bookingDtos = new ArrayList<>();
+            for (Table table : allocatedTables) {
+                Booking booking = new Booking();
+                booking.setCustomerPhoneNumber(phoneNumber);
+                booking.setCustomerEmail(email);
+                booking.setCustomerName(costumeName);
+                booking.setDateTime(dateTime);
+                booking.setTableId(String.valueOf(table.getId()));
+                booking.setNumPeople(numPeople);
+                bookingMapper.insert(booking);
+                BookingDto bookingDto = new BookingDto(restName, costumeName, phoneNumber, email, dateTime, table.getTableNumber(), numPeople);
+                bookingDtos.add(bookingDto);
+            }
+        } catch (Exception e) {
+            return Result.error("Fail to book the restaurant, please try again.");
         }
         String subject = "You got a new booking";
-        String message = "Dear business owner of "+restName+", you got some new bookings!\n"+ bookingDtos;
+        String message = "Dear business owner of " + restName + ", you got some new bookings!\n" + bookingDtos;
         String restOwnerEmail = searchingMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
 
-        EmailDetails emailDetails = new EmailDetails(restOwnerEmail,message,subject);
-        String smsMessage = "Dear customer, your booking has been confirmed. \n"+bookingDtos;
-        SMSDetails smsDetails = new SMSDetails("+61"+phoneNumber,smsMessage);
+        EmailDetails emailDetails = new EmailDetails(restOwnerEmail, message, subject);
+        String smsMessage = "Dear customer, your booking has been confirmed. \n" + bookingDtos;
+        SMSDetails smsDetails = new SMSDetails("+61" + phoneNumber, smsMessage);
 //        try{
 //        emailSender.sendEmail(emailDetails);
 //        }catch (Exception e){
@@ -130,18 +141,10 @@ public class BookingServiceImp implements BookingService {
 //        }
         try {
             smsSender.sendSMS(smsDetails);
-        }catch (Exception e){
+        } catch (Exception e) {
             return Result.success("Add booking successfully but fail to send SMS");
         }
         return Result.success(bookingDtos);
-//        }catch (Exception e){
-//            return Result.error("Fail to book the restaurant, please try again.");
-//        }
-
-
-
-
-
 
 
     }

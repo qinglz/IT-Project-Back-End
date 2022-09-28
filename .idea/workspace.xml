@@ -7,6 +7,7 @@
     <list default="true" id="87675db5-94b3-461b-b92c-02eb5c494373" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/BookingServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/BookingServiceImp.java" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/utils/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/utils/EmailSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/utils/SmsSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/utils/SmsSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
@@ -14,6 +15,8 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/controllers/BookingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/controllers/BookingController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/entities/LoginUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/entities/LoginUser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/entities/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/entities/Restaurant.class" afterDir="false" />
+=======
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/BookingServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/BookingServiceImp.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,16 +222,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/BookingServiceImp.java</url>
-          <line>131</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
