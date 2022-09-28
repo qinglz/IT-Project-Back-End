@@ -16,7 +16,7 @@ public class EmailSender {
     @Value("${spring.mail.username}")
     private String sender;
 
-    public void sendEmail(EmailDetails emailDetails) throws Exception{
+    public void sendEmail(EmailDetails emailDetails) {
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
             simpleMailMessage.setFrom(sender);

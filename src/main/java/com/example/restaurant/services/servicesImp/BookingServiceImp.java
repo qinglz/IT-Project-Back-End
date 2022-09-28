@@ -22,7 +22,7 @@ import java.util.*;
 public class BookingServiceImp implements BookingService {
     private final Duration timeSpan = Duration.ofMinutes(59L);
     private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.][a-z]*$";
-    private final String phoneFormat = "^0\\d{9}$";
+    private final String phoneFormat = "^\\d{9}$";
     private final String nameFormat = "^[A-Z a-z]+$";
 
     @Autowired
@@ -96,7 +96,7 @@ public class BookingServiceImp implements BookingService {
         if(!notOverBook(bookingInfo)){
             return Result.error("You have other conflicting reservations during this period!");
         }
-        try {
+//        try {
         List<Table> tables = getAvailableTable(restId,dateTime);
         Collections.sort(tables,new TableCapacityComparator());
         List<Table> allocatedTables = TableAllocation.allocate(numPeople,tables);
@@ -117,19 +117,26 @@ public class BookingServiceImp implements BookingService {
             bookingDtos.add(bookingDto);
         }
         String subject = "You got a new booking";
-        String message = "Dear business owner of "+restName+" , you got some new bookings!\n"+ bookingDtos;
+        String message = "Dear business owner of "+restName+", you got some new bookings!\n"+ bookingDtos;
         String restOwnerEmail = searchingMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
 
         EmailDetails emailDetails = new EmailDetails(restOwnerEmail,message,subject);
         String smsMessage = "Dear customer, your booking has been confirmed. \n"+bookingDtos;
-        SMSDetails smsDetails = new SMSDetails(phoneNumber,smsMessage);
-        emailSender.sendEmail(emailDetails);
-        smsSender.sendSMS(smsDetails);
-
-        return Result.success(bookingDtos);
+        SMSDetails smsDetails = new SMSDetails("+61"+phoneNumber,smsMessage);
+//        try{
+//        emailSender.sendEmail(emailDetails);
+//        }catch (Exception e){
+//            return Result.success("Add booking successfully but fail to send email");
+//        }
+        try {
+            smsSender.sendSMS(smsDetails);
         }catch (Exception e){
-            return Result.error("Fail to book the restaurant, please try again.");
+            return Result.success("Add booking successfully but fail to send SMS");
         }
+        return Result.success(bookingDtos);
+//        }catch (Exception e){
+//            return Result.error("Fail to book the restaurant, please try again.");
+//        }
 
 
 
