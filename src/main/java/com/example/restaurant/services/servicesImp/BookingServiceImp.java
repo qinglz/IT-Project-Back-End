@@ -1,12 +1,13 @@
 package com.example.restaurant.services.servicesImp;
 
+import com.example.restaurant.Dto.BookingDto;
 import com.example.restaurant.Result;
-import com.example.restaurant.entities.Booking;
-import com.example.restaurant.entities.Restaurant;
-import com.example.restaurant.entities.Table;
+import com.example.restaurant.entities.*;
 import com.example.restaurant.mapper.BookingMapper;
 import com.example.restaurant.mapper.SearchingMapper;
 import com.example.restaurant.services.BookingService;
+import com.example.restaurant.utils.EmailSender;
+import com.example.restaurant.utils.SmsSender;
 import com.example.restaurant.utils.TableAllocation;
 import com.example.restaurant.utils.TableCapacityComparator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,13 @@ public class BookingServiceImp implements BookingService {
     private final String nameFormat = "^[A-Z a-z]+$";
 
     @Autowired
+    EmailSender emailSender;
+    @Autowired
     SearchingMapper searchingMapper;
     @Autowired
     BookingMapper bookingMapper;
+    @Autowired
+    SmsSender smsSender;
     @Override
     public List<Table> getAvailableTable(int restId,LocalDateTime dateTime) {
         LocalDateTime from = dateTime.minus(timeSpan);
@@ -91,11 +96,14 @@ public class BookingServiceImp implements BookingService {
         if(!notOverBook(bookingInfo)){
             return Result.error("You have other conflicting reservations during this period!");
         }
+        try {
         List<Table> tables = getAvailableTable(restId,dateTime);
         Collections.sort(tables,new TableCapacityComparator());
         List<Table> allocatedTables = TableAllocation.allocate(numPeople,tables);
+        Restaurant restaurant = searchingMapper.findRestaurantById(restIds);
+        String restName = restaurant.getName();
         //Maybe using BookingDto later
-        List<Booking> bookings = new ArrayList<>();
+        List<BookingDto> bookingDtos = new ArrayList<>();
         for (Table table : allocatedTables){
             Booking booking = new Booking();
             booking.setCustomerPhoneNumber(phoneNumber);
@@ -105,9 +113,29 @@ public class BookingServiceImp implements BookingService {
             booking.setTableId(String.valueOf(table.getId()));
             booking.setNumPeople(numPeople);
             bookingMapper.insert(booking);
-            bookings.add(booking);
+            BookingDto bookingDto = new BookingDto(restName,costumeName,phoneNumber,email,dateTime,table.getTableNumber(),numPeople);
+            bookingDtos.add(bookingDto);
         }
-        return Result.success(bookings);
+        String subject = "You got a new booking";
+        String message = "Dear business owner of "+restName+" , you got some new bookings!\n"+ bookingDtos;
+        String restOwnerEmail = searchingMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
+
+        EmailDetails emailDetails = new EmailDetails(restOwnerEmail,message,subject);
+        String smsMessage = "Dear customer, your booking has been confirmed. \n"+bookingDtos;
+        SMSDetails smsDetails = new SMSDetails(phoneNumber,smsMessage);
+        emailSender.sendEmail(emailDetails);
+        smsSender.sendSMS(smsDetails);
+
+        return Result.success(bookingDtos);
+        }catch (Exception e){
+            return Result.error("Fail to book the restaurant, please try again.");
+        }
+
+
+
+
+
+
 
     }
 

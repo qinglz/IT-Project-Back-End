@@ -30,7 +30,9 @@ public class LoginUser implements UserDetails {
     public String getName(){
         return businessUser.getName();
     }
-
+    public BusinessUser getBusinessUser(){
+        return this.businessUser;
+    }
     @Override
     public boolean isAccountNonExpired() {
         return true;

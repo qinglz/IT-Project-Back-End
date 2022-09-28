@@ -1,10 +1,13 @@
 package com.example.restaurant.Dto;
 
+import com.example.restaurant.utils.TimeUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+
 
 @Data
 @NoArgsConstructor
@@ -72,5 +75,17 @@ public class BookingDto {
 
     public void setNumPeople(int numPeople) {
         this.numPeople = numPeople;
+    }
+
+    @Override
+    public String toString() {
+        return "Here is the booking information:" +
+                "Restaurant Name='" + restaurantName + '\'' +
+                ",   Customer Name='" + customerName + '\'' +
+                ",   Customer Phone Number='" + customerPhoneNumber + '\'' +
+                ",   Customer Email='" + customerEmail + '\'' +
+                ",   Date Time=" + TimeUtil.toSqlDateTime(dateTime) +
+                ",   Table Number=" + tableNumber +
+                ",   Num People=" + numPeople;
     }
 }

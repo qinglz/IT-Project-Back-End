@@ -1,5 +1,8 @@
 package com.example.restaurant.entities;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class SMSDetails {
 
         private String to;

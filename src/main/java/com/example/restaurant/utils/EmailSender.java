@@ -16,8 +16,7 @@ public class EmailSender {
     @Value("${spring.mail.username}")
     private String sender;
 
-    public Result sendEmail(EmailDetails emailDetails){
-        try{
+    public void sendEmail(EmailDetails emailDetails) throws Exception{
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
             simpleMailMessage.setFrom(sender);
@@ -26,10 +25,6 @@ public class EmailSender {
             simpleMailMessage.setSubject(emailDetails.getSubject());
 
             javaMailSender.send(simpleMailMessage);
-            return Result.success("Email sent successfully!");
-        }
-        catch(Exception e){
-            return Result.error("Error while sending email");
-        }
+
     }
 }

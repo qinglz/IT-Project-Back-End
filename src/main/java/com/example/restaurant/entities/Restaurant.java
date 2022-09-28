@@ -25,6 +25,15 @@ public class Restaurant {
     private int numStaff;
     private int capacity;
 
+    public Restaurant(String name,String address,int ownerId,int capacity,int numStaff){
+        this.name = name;
+        this.address = address;
+        this.ownerId = ownerId;
+        this.capacity = capacity;
+        this.numStaff = numStaff;
+    }
+
+
     public int getId() {
         return id;
     }
