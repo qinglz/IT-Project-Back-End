@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class LoginServiceImp implements LoginService {
-    private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.][a-z]*$";
+    private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*([.][a-z]*)*$";
     private final String passwordFormat = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$";
     private static Logger logger= LoggerFactory.getLogger(LoginServiceImp.class);
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -56,7 +56,7 @@ public class LoginServiceImp implements LoginService {
         Map<String, String> map = new HashMap<>();
         map.put("token", jwt);
 
-        redisCache.setCacheObject("login:" + user_email, loginUser,1, TimeUnit.DAYS);
+        redisCache.setCacheObject("login:" + jwt, loginUser,1, TimeUnit.DAYS);
 //
         return Result.success(map);
 
@@ -98,7 +98,7 @@ public class LoginServiceImp implements LoginService {
 
         BusinessUser oldBusinessUser = loginMapper.selectByEmail(signupInfo.get("email"));
         if(oldBusinessUser!= null){
-            System.out.println(oldBusinessUser);
+//            System.out.println(oldBusinessUser);
             return Result.error("This email has been used");
 
         }else {

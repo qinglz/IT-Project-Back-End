@@ -37,7 +37,7 @@ public class LoginController {
 
     /**
      * This API is for Post HttpRequest, and request a body with format as following:
-     * @param signupInfo {"email":value,"password":value}
+     * @param signupInfo {"email":value,"password":value,"fullName":value}.
      * @return Result show if sign up successfully. If sign up successfully, this method will automatically call login method
      * and result will contain a token in Result.data.
      */
