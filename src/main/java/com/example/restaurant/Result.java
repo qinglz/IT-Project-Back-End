@@ -3,6 +3,22 @@ package com.example.restaurant;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * All APIs of this application will return a Result instance.
+ * "code": is an attribute to show if API get an expected result.(What an expected result should be is shown in each API's comment.)
+ * basically, code==1 means get an expected result. code==0 means get an unexpected result, missing important information, or other problem.
+ * code==2 means the most important part of functionality is done, but some unimportant functionality failed.(E.g. created booking in
+ * database successfully but the confirmation email cannot be sent)
+ *
+ * "data": is an object that contain the data you want get from this API.
+ *
+ * "msg": is a sentence to describe what cause the API runs unexpectedly.
+ *
+ *
+ *
+ *
+ * @param <T> data Type
+ */
 public class Result<T>{
     private Integer code;
 
@@ -32,6 +48,14 @@ public class Result<T>{
     public Result<T> add(String key, Object value) {
         this.map.put(key, value);
         return this;
+    }
+
+    public static <T> Result<T> partialError(T object, String msg) {
+        Result r = new Result();
+        r.msg = msg;
+        r.data = object;
+        r.code = 2;
+        return r;
     }
 
     public Integer getCode() {

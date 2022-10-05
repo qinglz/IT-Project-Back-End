@@ -56,7 +56,7 @@ public class LoginServiceImp implements LoginService {
         Map<String, String> map = new HashMap<>();
         map.put("token", jwt);
 
-        redisCache.setCacheObject("login:" + jwt, loginUser,1, TimeUnit.DAYS);
+        redisCache.setCacheObject("login:" + user_email, loginUser,1, TimeUnit.DAYS);
 //
         return Result.success(map);
 
@@ -78,8 +78,13 @@ public class LoginServiceImp implements LoginService {
         UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
         String userEmail = loginUser.getUsername();
-        redisCache.deleteObject("Login: " + userEmail);
-        return Result.success("Log Out successfully!");
+        try {
+            redisCache.deleteObject("Login: " + userEmail);
+        }catch (Exception e){
+            return Result.error("Fail to log out, please try again");
+        }
+
+        return Result.success("Log out successfully!");
 
     }
 

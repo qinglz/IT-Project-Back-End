@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -24,35 +25,96 @@ public class RestaurantManageServiceImp implements RestaurantManageService {
     EmailSender emailSender;
 
     public Result restaurantRegister(Map<String,String> restaurantInfo){
+        UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        BusinessUser businessUser = ((LoginUser) authentication.getPrincipal()).getBusinessUser();
+        String restName = restaurantInfo.get("restName");
+
         try {
-            UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-            BusinessUser businessUser = ((LoginUser) authentication.getPrincipal()).getBusinessUser();
             int businessId = businessUser.getId();
-            String restName = restaurantInfo.get("restName");
             String address = restaurantInfo.get("address");
             int capacity = Integer.parseInt(restaurantInfo.get("capacity"));
             int numStaff = Integer.parseInt(restaurantInfo.get("numStaff"));
             Restaurant restaurant = new Restaurant(restName, address, businessId, capacity, numStaff);
-            if (searchingMapper.checkRestaurantByName(restName) != null) {
-                return Result.error("The restaurant name is existed");
-            }
+//            if (searchingMapper.checkRestaurantByAddress(address) != null) {
+//                return Result.error("");
+//            }
             searchingMapper.insert(restaurant);
-            String to = businessUser.getEmail();
-            String subject = "Create Restaurant Successfully!";
-            String message = "You have successfully created a restaurant: " + restName + " !";
-            EmailDetails emailDetails = new EmailDetails(to, subject, message);
-            emailSender.sendEmail(emailDetails);
-            return Result.success("New restaurant created.");
-        }catch (Exception e){
+        }catch (Exception e) {
             return Result.error("Fail to create restaurant.");
+
+        }
+//        Not use email for now.
+//        try {
+//            String to = businessUser.getEmail();
+//            String subject = "Create Restaurant Successfully!";
+//            String message = "You have successfully created a restaurant: " + restName + " !";
+//            EmailDetails emailDetails = new EmailDetails(to, subject, message);
+//            emailSender.sendEmail(emailDetails);
+//
+//        }catch (Exception e){
+//            return Result.partialError(null,"Create restaurant successfully, but fail to send email.");
+//        }
+        return Result.success("New restaurant created.");
+
+    }
+    @Override
+    public Result restaurantUpdate(Map<String,String> restaurantInfo){
+        try {
+            UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+            BusinessUser businessUser = ((LoginUser) authentication.getPrincipal()).getBusinessUser();
+            int businessId = businessUser.getId();
+            String restID = restaurantInfo.get("restId");
+            String restName = restaurantInfo.get("restName");
+            String address = restaurantInfo.get("address");
+            int capacity = Integer.parseInt(restaurantInfo.get("capacity"));
+            int numStaff = Integer.parseInt(restaurantInfo.get("numStaff"));
+            Restaurant restaurant = new Restaurant(restID,restName, address, businessId, capacity, numStaff);
+//            if (searchingMapper.checkRestaurantByAddress(address) != null) {
+//                return Result.error("");
+//            }
+            searchingMapper.updateById(restaurant);
+            return Result.success("Restaurant updated.");
+        }catch (Exception e){
+            return Result.error("Fail to update restaurant.");
         }
 
-//        if (searchingMapper.checkRestaurantByName(restaurant.getName())!= null){
-//           return Result.error("The restaurant name is existed");
-//        }else{
-//            searchingMapper.insert(restaurant);
-//            emailSender.sendEmail(emailDetails);
-//            return Result.success(restaurant);
-//        }
+    }
+
+    @Override
+    public Result getAllRestaurants() {
+        try {
+            UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+            BusinessUser businessUser = ((LoginUser) authentication.getPrincipal()).getBusinessUser();
+            List<Restaurant> restaurants = searchingMapper.findRestaurantByOwnerId(String.valueOf(businessUser.getId()));
+            return Result.success(restaurants);
+        }catch (Exception e){
+            return Result.error("Fail to load restaurant information.");
+        }
+
+
+
+    }
+    @Override
+    public Result getUserName(){
+        try {
+            UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+            BusinessUser businessUser = ((LoginUser) authentication.getPrincipal()).getBusinessUser();
+            String name = businessUser.getName();
+            return Result.success(name);
+        }catch (Exception e){
+            return Result.error("Fail to load name information.");
+        }
+    }
+    @Override
+    public Result restaurantDelete(Map<String,String> restaurantInfo){
+        String restId = restaurantInfo.get("restId");
+        try {
+            searchingMapper.deleteById(restId);
+        }catch (Exception e){
+            return Result.error("Fail to delete restaurant.");
+        }
+
+        return Result.success("Delete restaurant Successfully.");
+
     }
 }

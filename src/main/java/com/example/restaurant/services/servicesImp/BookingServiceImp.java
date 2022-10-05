@@ -127,23 +127,25 @@ public class BookingServiceImp implements BookingService {
         } catch (Exception e) {
             return Result.error("Fail to book the restaurant, please try again.");
         }
-        String subject = "You got a new booking";
-        String message = "Dear business owner of " + restName + ", you got some new bookings!\n" + bookingDtos;
-        String restOwnerEmail = searchingMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
 
-        EmailDetails emailDetails = new EmailDetails(restOwnerEmail, message, subject);
-        String smsMessage = "Dear customer, your booking has been confirmed. \n" + bookingDtos;
-        SMSDetails smsDetails = new SMSDetails("+61" + phoneNumber, smsMessage);
+//        Not use email for now.
+//        String subject = "You got a new booking";
+//        String message = "Dear business owner of " + restName + ", you got some new bookings!\n" + bookingDtos;
+//        String restOwnerEmail = searchingMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
+
+//        EmailDetails emailDetails = new EmailDetails(restOwnerEmail, message, subject);
+//        String smsMessage = "Dear customer, your booking has been confirmed. \n" + bookingDtos;
+//        SMSDetails smsDetails = new SMSDetails("+61" + phoneNumber, smsMessage);
 //        try{
 //        emailSender.sendEmail(emailDetails);
 //        }catch (Exception e){
-//            return Result.success("Add booking successfully but fail to send email");
+//            return Result.partialError(bookingDtos, "Add booking successfully but fail to send email");
 //        }
-        try {
-            smsSender.sendSMS(smsDetails);
-        } catch (Exception e) {
-            return Result.success("Add booking successfully but fail to send SMS");
-        }
+//        try {
+//            smsSender.sendSMS(smsDetails);
+//        } catch (Exception e) {
+//            return Result.partialError(bookingDtos, "Add booking successfully but fail to send SMS");
+//        }
         return Result.success(bookingDtos);
 
 

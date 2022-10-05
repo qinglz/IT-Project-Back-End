@@ -30,7 +30,12 @@ public class LoginController {
 
     }
 
-    @PostMapping("/signOutAccount")
+
+    /**
+     * This Api is for business users logging out.
+     * @return Result show if log out successfully.
+     */
+    @PostMapping("/logOutAccount")
     public Result logout(){
         return loginService.userLogout();
     }

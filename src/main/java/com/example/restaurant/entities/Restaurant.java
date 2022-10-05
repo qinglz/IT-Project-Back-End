@@ -32,6 +32,14 @@ public class Restaurant {
         this.capacity = capacity;
         this.numStaff = numStaff;
     }
+    public Restaurant(String id, String name,String address,int ownerId,int capacity,int numStaff){
+        this.id = Integer.parseInt(id);
+        this.name = name;
+        this.address = address;
+        this.ownerId = ownerId;
+        this.capacity = capacity;
+        this.numStaff = numStaff;
+    }
 
 
     public int getId() {
