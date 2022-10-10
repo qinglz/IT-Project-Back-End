@@ -119,6 +119,7 @@ public class BookingServiceImp implements BookingService {
                 booking.setCustomerName(costumeName);
                 booking.setDateTime(dateTime);
                 booking.setTableId(String.valueOf(table.getId()));
+                booking.setTableNum(table.getTableNumber());
                 booking.setNumPeople(numPeople);
                 bookingMapper.insert(booking);
                 BookingDto bookingDto = new BookingDto(restName, costumeName, phoneNumber, email, dateTime, table.getTableNumber(), numPeople);

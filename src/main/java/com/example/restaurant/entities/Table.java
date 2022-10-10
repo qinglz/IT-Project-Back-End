@@ -17,6 +17,12 @@ public class Table {
     private int tableNumber;
     private String type;
 
+    public Table(int restaurantId, int tableNumber, int capacity){
+        this.restaurantId =restaurantId;
+        this.tableNumber = tableNumber;
+        this.capacity = capacity;
+    }
+
     public int getId() {
         return id;
     }

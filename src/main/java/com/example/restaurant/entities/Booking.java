@@ -22,6 +22,17 @@ public class Booking {
     private String customerEmail;
     private LocalDateTime dateTime;
     private int numPeople;
+
+    public int getTableNum() {
+        return tableNum;
+    }
+
+    public void setTableNum(int tableNum) {
+        this.tableNum = tableNum;
+    }
+
+    private int tableNum;
+
 //    private String occasion;
     private String specialConsideration;
     public int getId() {
