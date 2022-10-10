@@ -35,14 +35,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="localRepository" value="C:\Users\user\.m2\repository" />
-        <option name="userSettingsFile" value="C:\Users\user\.m2\settings.xml" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -69,7 +61,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "settings.editor.selected.configurable": "MavenSettings",
     "spring.configuration.checksum": "e197a9ccf40b776f31368105d1aa8c4b"
   }
 }]]></component>
@@ -230,6 +222,7 @@
       <workItem from="1665377169137" duration="1326000" />
       <workItem from="1665378562736" duration="1282000" />
       <workItem from="1665381534980" duration="1960000" />
+      <workItem from="1665384336579" duration="148000" />
     </task>
     <servers />
   </component>
