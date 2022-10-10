@@ -18,7 +18,7 @@ class SearchingMapperTest {
 
     @Test
     void checkRestaurantByName() {
-        System.out.println(searchingMapper.checkRestaurantByName("Chicken Wings Expert"));
+        System.out.println(searchingMapper.searchRestaurantByName("Chicken Wings Expert"));
     }
 
     @Test
