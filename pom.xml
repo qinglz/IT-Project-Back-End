@@ -14,7 +14,7 @@
     <name>Restaurant</name>
     <description>Restaurant</description>
     <properties>
-        <java.version>18.0.2.1</java.version>
+        <java.version>18</java.version>
     </properties>
     <dependencies>
 <!--        <dependency>-->
