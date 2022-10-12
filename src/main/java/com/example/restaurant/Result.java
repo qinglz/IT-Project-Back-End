@@ -9,7 +9,7 @@ import java.util.Map;
  * basically, code==1 means get an expected result. code==0 means get an unexpected result, missing important information, or other problem.
  * code==2 means the most important part of functionality is done, but some unimportant functionality failed.(E.g. created booking in
  * database successfully but the confirmation email cannot be sent)
- *
+ *  code==3 means missing login token.
  * "data": is an object that contain the data you want get from this API.
  *
  * "msg": is a sentence to describe what cause the API runs unexpectedly.
@@ -42,6 +42,11 @@ public class Result<T>{
         Result r = new Result();
         r.msg = msg;
         r.code = 0;
+        return r;
+    }
+    public static <T> Result<T> notLogin() {
+        Result r = new Result();
+        r.code = 3;
         return r;
     }
 

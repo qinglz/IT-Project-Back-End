@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * All API in this controller need Token!
+ */
 @RestController
 public class TableController {
     @Autowired

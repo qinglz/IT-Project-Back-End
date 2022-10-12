@@ -32,7 +32,7 @@ public class LoginController {
 
 
     /**
-     * This Api is for business users logging out.
+     * This Api is for business users logging out, need token.
      * @return Result show if log out successfully.
      */
     @PostMapping("/logOutAccount")

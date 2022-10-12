@@ -20,7 +20,7 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint{
     }
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        Result result = Result.error("You need to log in!");
+        Result result = Result.notLogin();
         String json = JSON.toJSONString(result);
         WebUtils.renderString(response,json);
 
