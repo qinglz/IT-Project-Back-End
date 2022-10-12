@@ -3,16 +3,14 @@ package com.example.restaurant.mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class SearchingMapperTest {
+class RestaurantMapperTest {
     @Autowired
-    SearchingMapper searchingMapper;
+    RestaurantMapper restaurantMapper;
 
 
     @Test
     void searchRestaurantByName() {
-        System.out.println(searchingMapper.searchRestaurantByName("Chicken"));
+        System.out.println(restaurantMapper.searchRestaurantByName("Chicken"));
 
     }
 
@@ -23,6 +21,6 @@ class SearchingMapperTest {
 
     @Test
     void findRestaurantById() {
-        System.out.println(searchingMapper.findRestaurantById("1"));
+        System.out.println(restaurantMapper.findRestaurantById("1"));
     }
 }

@@ -4,7 +4,7 @@ import com.example.restaurant.Dto.BookingDto;
 import com.example.restaurant.Result;
 import com.example.restaurant.entities.*;
 import com.example.restaurant.mapper.BookingMapper;
-import com.example.restaurant.mapper.SearchingMapper;
+import com.example.restaurant.mapper.RestaurantMapper;
 import com.example.restaurant.services.BookingService;
 import com.example.restaurant.utils.EmailSender;
 import com.example.restaurant.utils.SmsSender;
@@ -29,7 +29,7 @@ public class BookingServiceImp implements BookingService {
     @Autowired
     EmailSender emailSender;
     @Autowired
-    SearchingMapper searchingMapper;
+    RestaurantMapper restaurantMapper;
     @Autowired
     BookingMapper bookingMapper;
     @Autowired
@@ -45,7 +45,7 @@ public class BookingServiceImp implements BookingService {
 
     @Override
     public boolean availableAt(int restId, int numPeople, LocalDateTime dateTime) {
-        Restaurant restaurant = searchingMapper.findRestaurantById(String.valueOf(restId));
+        Restaurant restaurant = restaurantMapper.findRestaurantById(String.valueOf(restId));
         int restaurantCapacity = restaurant.getCapacity();
         LocalDateTime from = dateTime.minus(timeSpan);
         LocalDateTime to = dateTime.plus(timeSpan);
@@ -73,15 +73,15 @@ public class BookingServiceImp implements BookingService {
     public Result addBooking(Map<String,String> bookingInfo) {
         String restIds = bookingInfo.get("restId");
         String numPeoples = bookingInfo.get("numPeople");
-        String costumeName = bookingInfo.get("name");
+        String costumerName = bookingInfo.get("name");
         String phoneNumber = bookingInfo.get("phoneNumber");
         String email = bookingInfo.get("email");
         String dateTimes = bookingInfo.get("dateTime");
         if (restIds == null || numPeoples == null
-                || costumeName == null || phoneNumber == null || dateTimes == null) {
+                || costumerName == null || phoneNumber == null || dateTimes == null) {
             return Result.error("Missing required booking information!");
         }
-        if (!costumeName.matches(nameFormat)) {
+        if (!costumerName.matches(nameFormat)) {
             return Result.error("Incorrect name format.");
         } else if (!phoneNumber.matches(phoneFormat)) {
             return Result.error("Incorrect phone number format.");
@@ -108,7 +108,7 @@ public class BookingServiceImp implements BookingService {
             List<Table> tables = getAvailableTable(restId, dateTime);
             tables.sort(new TableCapacityComparator());
             List<Table> allocatedTables = TableAllocation.allocate(numPeople, tables);
-            restaurant = searchingMapper.findRestaurantById(restIds);
+            restaurant = restaurantMapper.findRestaurantById(restIds);
             restName = restaurant.getName();
             //Maybe using BookingDto later
             bookingDtos = new ArrayList<>();
@@ -116,13 +116,14 @@ public class BookingServiceImp implements BookingService {
                 Booking booking = new Booking();
                 booking.setCustomerPhoneNumber(phoneNumber);
                 booking.setCustomerEmail(email);
-                booking.setCustomerName(costumeName);
+                booking.setCustomerName(costumerName);
                 booking.setDateTime(dateTime);
                 booking.setTableId(String.valueOf(table.getId()));
                 booking.setTableNum(table.getTableNumber());
                 booking.setNumPeople(numPeople);
+                booking.setRestId(restId);
                 bookingMapper.insert(booking);
-                BookingDto bookingDto = new BookingDto(restName, costumeName, phoneNumber, email, dateTime, table.getTableNumber(), numPeople);
+                BookingDto bookingDto = new BookingDto(restName, costumerName, phoneNumber, email, dateTime, table.getTableNumber(), numPeople);
                 bookingDtos.add(bookingDto);
             }
         } catch (Exception e) {

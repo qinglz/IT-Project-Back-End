@@ -3,11 +3,9 @@ package com.example.restaurant.controllers;
 import com.example.restaurant.Result;
 import com.example.restaurant.entities.Restaurant;
 import com.example.restaurant.services.RestaurantManageService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -52,15 +50,26 @@ public class RestaurantManageController {
         return restaurantManageService.getAllRestaurants();
     }
 
+    @GetMapping("/getBookingForRestaurant")
+    public Result getBookingForRestaurant(@RequestParam("restId") String restId){
+        return restaurantManageService.getBookingByRestaurant(restId);
+    }
+
     /**
+     *
      * @return Result contains the name of current user.
      */
-    @GetMapping("getUserName")
+    @GetMapping("/getUserName")
     public Result getUserName(){
         return restaurantManageService.getUserName();
     }
 
-    @PostMapping("deleteRestaurant")
+
+    /**Body Request
+     * @param restaurantInfo e.g. {"restId":"1"}
+     * @return Whether delete successfully
+     */
+    @PostMapping("/deleteRestaurant")
     public Result deleteRestaurant(@RequestBody Map<String,String> restaurantInfo){
         return restaurantManageService.restaurantDelete(restaurantInfo);
     }

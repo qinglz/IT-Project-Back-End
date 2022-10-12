@@ -12,4 +12,5 @@ public interface RestaurantManageService {
     public Result restaurantRegister(Map<String,String> restaurantInfo);
     public Result getUserName();
     public Result restaurantDelete(Map<String,String> restaurantInfo);
+    public Result getBookingByRestaurant(String id);
 }

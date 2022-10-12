@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class TableServiceImpl implements TableService {
             deletedNumber.add(Integer.parseInt(k.get("tableNumber")));
         }
         try{
-            tableMapper.deleteACertainTable(Integer.parseInt(info.get(0).get("restId")),deletedNumber);
+            tableMapper.deleteCertainTables(Integer.parseInt(info.get(0).get("restId")),deletedNumber);
 
         }catch (Exception e){
             System.out.println(e);
@@ -56,16 +57,29 @@ public class TableServiceImpl implements TableService {
         List<Table> tables = new ArrayList<>();
         for (Map<String,String> k : info){
             Table newTable = new Table(Integer.parseInt(k.get("restId")),Integer.parseInt(k.get("tableNumber")), Integer.parseInt(k.get("capacity")));
+            newTable.setDeleted(0);
             tables.add(newTable);
         }
         try {
             for(Table table : tables){
                 tableMapper.insert(table);
 
+                substitution(table);
+
+
             }
         }catch (Exception e){
+            System.out.println(e);
             return Result.error("Fail to add tables");
         }
         return Result.success("Add tables successfully");
     }
+
+
+    public void substitution(Table table) {
+        LocalDateTime now = LocalDateTime.now();
+        tableMapper.substitute(String.valueOf(table.getId()),String.valueOf(table.getRestaurantId()),String.valueOf(table.getTableNumber()),now);
+
+    }
 }
+

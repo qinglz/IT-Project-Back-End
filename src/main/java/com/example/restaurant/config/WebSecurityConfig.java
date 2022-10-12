@@ -48,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 // 对于登录接口 允许匿名访问
+                .antMatchers("/deleteRestaurant").anonymous()
                 .antMatchers("/verifyAccount").anonymous()
                 .antMatchers("/signUpAccount").anonymous()
                 .antMatchers("/checkAvailability").anonymous()

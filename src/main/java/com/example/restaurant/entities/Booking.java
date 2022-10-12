@@ -22,18 +22,18 @@ public class Booking {
     private String customerEmail;
     private LocalDateTime dateTime;
     private int numPeople;
-
-    public int getTableNum() {
-        return tableNum;
-    }
-
-    public void setTableNum(int tableNum) {
-        this.tableNum = tableNum;
-    }
-
     private int tableNum;
+    private int restId;
 
-//    private String occasion;
+    public int getRestId() {
+        return restId;
+    }
+
+    public void setRestId(int restId) {
+        this.restId = restId;
+    }
+
+    //    private String occasion;
     private String specialConsideration;
     public int getId() {
         return id;
@@ -41,6 +41,13 @@ public class Booking {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public int getTableNum() {
+        return tableNum;
+    }
+
+    public void setTableNum(int tableNum) {
+        this.tableNum = tableNum;
     }
 
     public String getTableId() {

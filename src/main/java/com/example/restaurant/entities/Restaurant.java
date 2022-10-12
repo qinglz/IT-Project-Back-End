@@ -24,6 +24,7 @@ public class Restaurant {
     private String[] tags;
     private int numStaff;
     private int capacity;
+    private int deleted;
 
     public Restaurant(String name,String address,int ownerId,int capacity,int numStaff){
         this.name = name;
@@ -31,6 +32,7 @@ public class Restaurant {
         this.ownerId = ownerId;
         this.capacity = capacity;
         this.numStaff = numStaff;
+        this.deleted = 0;
     }
     public Restaurant(String id, String name,String address,int ownerId,int capacity,int numStaff){
         this.id = Integer.parseInt(id);
