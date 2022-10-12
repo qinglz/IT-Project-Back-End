@@ -1,11 +1,13 @@
 package com.example.restaurant;
 
+import com.alibaba.fastjson.parser.SymbolTable;
 import com.example.restaurant.controllers.BookingController;
 import com.example.restaurant.entities.Booking;
 import com.example.restaurant.entities.Table;
 import com.example.restaurant.mapper.BookingMapper;
 import com.example.restaurant.mapper.LoginMapper;
 import com.example.restaurant.services.BookingService;
+import com.example.restaurant.utils.JwtUtil;
 import com.example.restaurant.utils.TableAllocation;
 import com.example.restaurant.utils.TableCapacityComparator;
 import com.example.restaurant.utils.TimeUtil;
@@ -54,6 +56,16 @@ public class MapperTest {
 //
         System.out.println(encode);
 //        System.out.println(encode2);
+    }
+    @Test
+    public void testJWT(){
+        String test = "zzz";
+        String jwt1 = JwtUtil.createJWT(test);
+        String jwt2 = JwtUtil.createJWT(test);
+        System.out.println(jwt1);
+        System.out.println(jwt2);
+
+
     }
     @Test
     public void testRedisTemplate(){

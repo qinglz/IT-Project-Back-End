@@ -1,9 +1,12 @@
 package com.example.restaurant.entities;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 @Data
 @AllArgsConstructor
@@ -11,7 +14,7 @@ import lombok.NoArgsConstructor;
 @TableName("sys_restaurant")
 
 public class Restaurant {
-
+    @TableId(type = IdType.AUTO)
     private int id;
     //used for searching only
     private double similarity;
@@ -24,6 +27,7 @@ public class Restaurant {
     private String[] tags;
     private int numStaff;
     private int capacity;
+    private int deleted;
 
     public Restaurant(String name,String address,int ownerId,int capacity,int numStaff){
         this.name = name;
@@ -31,6 +35,7 @@ public class Restaurant {
         this.ownerId = ownerId;
         this.capacity = capacity;
         this.numStaff = numStaff;
+        this.deleted = 0;
     }
     public Restaurant(String id, String name,String address,int ownerId,int capacity,int numStaff){
         this.id = Integer.parseInt(id);
