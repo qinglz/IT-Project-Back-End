@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-/**
- * All API in this controller need Token!
- */
+    /**
+     * All API in this controller need Token!
+     */
 @RestController
 public class RestaurantManageController {
 

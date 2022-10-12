@@ -84,7 +84,7 @@ public class LoginServiceImp implements LoginService {
         String token = (String)authentication.getCredentials();
         try {
 //            redisCache.deleteObject("Login: " + userEmail);
-            tokenMapper.deleteById(token);
+            tokenMapper.deleteToken(token);
         }catch (Exception e){
             return Result.error("Fail to log out, please try again");
         }
