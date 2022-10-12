@@ -77,7 +77,7 @@ public class BookingServiceImp implements BookingService {
         String phoneNumber = bookingInfo.get("phoneNumber");
         String email = bookingInfo.get("email");
         String dateTimes = bookingInfo.get("dateTime");
-        if (restIds == null || numPeoples == null
+        if (restIds == null || numPeoples == null ||email ==null
                 || costumerName == null || phoneNumber == null || dateTimes == null) {
             return Result.error("Missing required booking information!");
         }
