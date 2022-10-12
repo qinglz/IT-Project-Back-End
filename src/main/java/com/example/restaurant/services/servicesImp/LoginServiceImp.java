@@ -3,8 +3,10 @@ package com.example.restaurant.services.servicesImp;
 
 import com.example.restaurant.Result;
 import com.example.restaurant.entities.BusinessUser;
+import com.example.restaurant.entities.Token;
 import com.example.restaurant.mapper.LoginMapper;
 import com.example.restaurant.entities.LoginUser;
+import com.example.restaurant.mapper.TokenMapper;
 import com.example.restaurant.services.LoginService;
 import com.example.restaurant.utils.JwtUtil;
 import com.example.restaurant.utils.RedisCache;
@@ -32,6 +34,8 @@ public class LoginServiceImp implements LoginService {
 
     @Autowired
     LoginMapper loginMapper;
+    @Autowired
+    TokenMapper tokenMapper;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -50,13 +54,14 @@ public class LoginServiceImp implements LoginService {
         }
         // 认证通过，通过user email生成一个jwt， jwt存入response result返回
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
-        String user_email = loginUser.getUsername().toString();
-        String jwt = JwtUtil.createJWT(user_email);
+        String userEmail = loginUser.getUsername();
+        String userId = String.valueOf(loginUser.getId());
+        String jwt = JwtUtil.createJWT(userEmail);
 
         Map<String, String> map = new HashMap<>();
         map.put("token", jwt);
-
-        redisCache.setCacheObject("login:" + user_email, loginUser,1, TimeUnit.DAYS);
+        tokenMapper.insert(new Token(jwt,userId));
+//        redisCache.setCacheObject("login:" + user_email, loginUser,1, TimeUnit.DAYS);
 //
         return Result.success(map);
 
@@ -76,10 +81,10 @@ public class LoginServiceImp implements LoginService {
 
     public Result userLogout(){
         UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
-        String userEmail = loginUser.getUsername();
+        String token = (String)authentication.getCredentials();
         try {
-            redisCache.deleteObject("Login: " + userEmail);
+//            redisCache.deleteObject("Login: " + userEmail);
+            tokenMapper.deleteById(token);
         }catch (Exception e){
             return Result.error("Fail to log out, please try again");
         }

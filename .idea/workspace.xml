@@ -6,26 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="87675db5-94b3-461b-b92c-02eb5c494373" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/controllers/RestaurantManageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/controllers/RestaurantManageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/controllers/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/controllers/TableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/entities/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/entities/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/entities/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/entities/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/entities/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/entities/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/mapper/BookingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/mapper/BookingMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/mapper/SearchingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/mapper/RestaurantMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/mapper/TableMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/mapper/TableMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/RestaurantManageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/RestaurantManageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/BookingServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/BookingServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/RestaurantManageServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/RestaurantManageServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/SearchingServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/SearchingServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/TableServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/TableServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/restaurant/mapper/SearchingMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/restaurant/mapper/RestaurantMapperTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/config/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/mapper/BookingMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/mapper/BookingMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/mapper/SearchingMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/BookingServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/BookingServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/SearchingServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/restaurant/services/servicesImp/SearchingServiceImp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/entities/LoginUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/entities/LoginUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/filter/JwtAuthenticationTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/filter/JwtAuthenticationTokenFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/LoginServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/LoginServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/restaurant/MapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/restaurant/MapperTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +81,7 @@
       <recent name="com.example.restaurant.mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.RestaurantApplication">
+  <component name="RunManager" selected="JUnit.MapperTest.testJWT">
     <configuration name="MapperTest.bookingDtoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Restaurant" />
       <extension name="coverage">
@@ -160,7 +146,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MapperTest.testRedisTemplate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MapperTest.testJWT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Restaurant" />
       <extension name="coverage">
         <pattern>
@@ -170,7 +156,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.restaurant" />
       <option name="MAIN_CLASS_NAME" value="com.example.restaurant.MapperTest" />
-      <option name="METHOD_NAME" value="testRedisTemplate" />
+      <option name="METHOD_NAME" value="testJWT" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -185,11 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MapperTest.testJWT" />
         <item itemvalue="JUnit.MapperTest.bookingDtoTest" />
         <item itemvalue="JUnit.MapperTest.testAllocate" />
         <item itemvalue="JUnit.MapperTest.testComparator" />
         <item itemvalue="JUnit.MapperTest.testAvailableTableSearching" />
-        <item itemvalue="JUnit.MapperTest.testRedisTemplate" />
       </list>
     </recent_temporary>
   </component>
@@ -232,7 +218,7 @@
       <workItem from="1664954119942" duration="1112000" />
       <workItem from="1665014000266" duration="1047000" />
       <workItem from="1665375938072" duration="11477000" />
-      <workItem from="1665532826149" duration="8736000" />
+      <workItem from="1665532826149" duration="12832000" />
     </task>
     <servers />
   </component>

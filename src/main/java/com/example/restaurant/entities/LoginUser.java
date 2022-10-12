@@ -26,6 +26,9 @@ public class LoginUser implements UserDetails {
     public String getUsername() {
         return businessUser.getEmail();
     }
+    public int getId(){
+        return businessUser.getId();
+    }
 
     public String getName(){
         return businessUser.getName();
