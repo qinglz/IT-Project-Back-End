@@ -60,10 +60,17 @@ public class LoginServiceImp implements LoginService {
 
         Map<String, String> map = new HashMap<>();
         map.put("token", jwt);
-        tokenMapper.insert(new Token(jwt,userId));
+        try{
+            tokenMapper.insert(new Token(jwt,userId));
+            return Result.success(map);
+
+        }catch (Exception e){
+            return Result.error("Insert unsuccessfully");
+
+        }
 //        redisCache.setCacheObject("login:" + user_email, loginUser,1, TimeUnit.DAYS);
 //
-        return Result.success(map);
+
 
 
 
