@@ -68,19 +68,6 @@ public class MapperTest {
 
 
     }
-    @Test
-    public void testRedisTemplate(){
-        String s = redisTemplate.opsForValue().get("aaa").toString();
-        System.out.println(s);
-    }
-    @Test
-    public void deleteValue(){
-        redisTemplate.delete("name");
-    }
-    @Test
-    public void setNewValue(){
-        redisTemplate.opsForValue().set("aaa","dawdsadwdsdsds");
-    }
     @Test void testAvailableTableSearching(){
         LocalDateTime localDateTime1 = LocalDateTime.of(2022,9,22,13,30,0);
         LocalDateTime localDateTime2 = LocalDateTime.of(2022,9,23,15,30,0);
@@ -112,7 +99,6 @@ public class MapperTest {
 
     @Test
     void updateTableTest(){
-        tableMapper.updateATable("");
 
 
     }
