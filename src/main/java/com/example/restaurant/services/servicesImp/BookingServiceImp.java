@@ -22,7 +22,7 @@ import java.util.*;
 public class BookingServiceImp implements BookingService {
     private final Duration timeSpan = Duration.ofMinutes(119L);
     private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.][a-z]*$";
-    private final String phoneFormat = "^\\d{9}$";
+    private final String phoneFormat = "^\\d{10}$";
     private final String timeFormat = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$";
     private final String nameFormat = "^[A-Z a-z]+$";
 
