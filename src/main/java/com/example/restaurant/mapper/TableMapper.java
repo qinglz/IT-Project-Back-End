@@ -13,13 +13,13 @@ public interface TableMapper extends BaseMapper<Table> {
     List<Table> getTableByRestId(@Param("id") int id);
 
     @Update("<script>" +
-            "Update sys_table Set deleted = 1 where restaurant_id = #{id} and table_number in " +
-            "<foreach item= 'num' index= 'index' collection= 'number' open= '(' separator= ',' close= ')'>" +
-            "#{num}" +
+            "Update sys_table Set deleted = 1 where id in " +
+            "<foreach item= 'id' index= 'index' collection= 'ids' open= '(' separator= ',' close= ')'>" +
+            "#{id}" +
             "</foreach>" +
             ";" +
             "</script>")
-    void deleteCertainTables(@Param("id") int id, @Param("number") List<Integer> number);
+    void deleteCertainTables(@Param("ids") List<Integer> ids);
 
 
 
@@ -28,5 +28,7 @@ public interface TableMapper extends BaseMapper<Table> {
             "And table_num = #{tableNumber} And date_time> #{time}")
     void substitute(@Param("tableId") String tableId, @Param("restId") String restId, @Param("tableNumber") String tableNumber, @Param("time") LocalDateTime time);
 
+    @Update("Update sys_table Set xpos = #{xpos}, ypos = #{ypos} where id = #{id}")
+    void updateATable(@Param("xpos") String xpos, @Param("ypos") String ypos, @Param("id") String id);
 
 }

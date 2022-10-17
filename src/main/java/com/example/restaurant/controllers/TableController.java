@@ -50,4 +50,9 @@ public class TableController {
         return tableService.addTables(info);
     }
 
+    @PostMapping("/updateTables")
+    public Result updateTables(@RequestBody List<Map<String,String>> info){
+        return tableService.updateTables(info);
+    }
+
 }
