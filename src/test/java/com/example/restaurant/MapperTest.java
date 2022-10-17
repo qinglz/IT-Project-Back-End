@@ -6,6 +6,7 @@ import com.example.restaurant.entities.Booking;
 import com.example.restaurant.entities.Table;
 import com.example.restaurant.mapper.BookingMapper;
 import com.example.restaurant.mapper.LoginMapper;
+import com.example.restaurant.mapper.TableMapper;
 import com.example.restaurant.services.BookingService;
 import com.example.restaurant.utils.JwtUtil;
 import com.example.restaurant.utils.TableAllocation;
@@ -30,13 +31,13 @@ public class MapperTest {
     @Autowired
     private LoginMapper loginMapper;
     @Autowired
-    private RedisTemplate redisTemplate;
-    @Autowired
     private BookingMapper bookingMapper;
     @Autowired
     BookingController bookingController;
     @Autowired
     BookingService bookingService;
+    @Autowired
+    TableMapper tableMapper;
     @Test
     public void TestBCryptPasswordEncoder(){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -107,6 +108,13 @@ public class MapperTest {
     @Test
     void bookingDtoTest(){
         System.out.println(bookingMapper.getBookingsByRestId(1));
+    }
+
+    @Test
+    void updateTableTest(){
+        tableMapper.updateATable("");
+
+
     }
 
 }
