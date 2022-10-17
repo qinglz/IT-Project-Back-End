@@ -42,7 +42,7 @@ public class TableController {
 
     /**
      * Body Request
-     * @param info e.g [{"restId":"1","tableNumber":"2","capacity":"6"},{"restId":"1","tableNumber":"3","capacity":"6"}......]
+     * @param info e.g [{"restId":"1","tableNumber":"2","capacity":"6","xpos":"656.0","ypos":"52.0"}......]
      * @return Whether add successfully
      */
     @PostMapping("/addTables")

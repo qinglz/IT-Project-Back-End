@@ -56,7 +56,7 @@ public class TableServiceImpl implements TableService {
         }
         List<Table> tables = new ArrayList<>();
         for (Map<String,String> k : info){
-            Table newTable = new Table(Integer.parseInt(k.get("restId")),Integer.parseInt(k.get("tableNumber")), Integer.parseInt(k.get("capacity")));
+            Table newTable = new Table(Integer.parseInt(k.get("restId")),Integer.parseInt(k.get("tableNumber")), Integer.parseInt(k.get("capacity")),Double.valueOf(k.get("xpos")),Double.valueOf("ypos"));
             newTable.setDeleted(0);
             tables.add(newTable);
         }
