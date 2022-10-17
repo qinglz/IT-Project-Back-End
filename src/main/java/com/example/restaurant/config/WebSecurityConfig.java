@@ -50,9 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 对于登录接口 允许匿名访问
                 .antMatchers("/verifyAccount").anonymous()
                 .antMatchers("/signUpAccount").anonymous()
-//                .antMatchers("/checkAvailability").anonymous()
-//                .antMatchers("/findRestaurantByName").anonymous()
-//                .antMatchers("/addBooking").anonymous()
+                .antMatchers("/checkAvailability").anonymous()
+                .antMatchers("/findRestaurantByName").anonymous()
+                .antMatchers("/addBooking").anonymous()
 
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated().and()
