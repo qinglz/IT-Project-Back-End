@@ -91,7 +91,7 @@ public class TableServiceImpl implements TableService {
                 String id = k.get("dbid");
                 String xpos = k.get("xpos");
                 String ypos = k.get("ypos");
-                tableMapper.updateATable(id,xpos,ypos);
+                tableMapper.updateATable(xpos,ypos,id);
 
             }
         }catch (Exception e){
