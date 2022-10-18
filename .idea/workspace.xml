@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="87675db5-94b3-461b-b92c-02eb5c494373" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/controllers/SearchingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/controllers/SearchingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/SearchingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/SearchingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/SearchingServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/restaurant/services/servicesImp/SearchingServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/restaurant/MapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/restaurant/MapperTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/restaurant/MapperTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/restaurant/MapperTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,9 +46,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="dart.analysis.tool.window.visible" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
