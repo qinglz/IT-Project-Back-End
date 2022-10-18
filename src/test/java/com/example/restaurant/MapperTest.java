@@ -2,6 +2,7 @@ package com.example.restaurant;
 
 import com.alibaba.fastjson.parser.SymbolTable;
 import com.example.restaurant.controllers.BookingController;
+import com.example.restaurant.controllers.SearchingController;
 import com.example.restaurant.entities.Booking;
 import com.example.restaurant.entities.Table;
 import com.example.restaurant.mapper.BookingMapper;
@@ -46,6 +47,8 @@ public class MapperTest {
     BookingService bookingService;
     @Autowired
     TableMapper tableMapper;
+    @Autowired
+    SearchingController searchingController;
     @Test
     public void TestBCryptPasswordEncoder(){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -110,9 +113,7 @@ public class MapperTest {
         Map<String,String> info = new HashMap<>();
         info.put("email","zql20000924@163.com");
         info.put("password","Zql20000924");
-
-        String s = "chicken";
-        tableMapper.updateATable("100","200","64");
+        System.out.println(searchingController.getAllRestaurant("o"));
 
 
     }
