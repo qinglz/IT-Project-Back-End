@@ -117,7 +117,7 @@ public class MapperTest {
         info.put("email","zql20000924@163.com");
         info.put("password","Zql20000924");
         info.put("fullName","Qinglin");
-        loginController.signUpAccount(info);
+        System.out.println(loginController.login(info));
 
 
 

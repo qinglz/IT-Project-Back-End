@@ -48,7 +48,10 @@ public class LoginController {
      */
     @PostMapping("/signUpAccount")
     public Result<BusinessUser> signUpAccount(@RequestBody Map<String, String> signupInfo){
-        return loginService.userSignUp(signupInfo);
+        try{return loginService.userSignUp(signupInfo);}
+        catch (Exception e){
+            return Result.error(e.getMessage());
+        }
 
     }
 
