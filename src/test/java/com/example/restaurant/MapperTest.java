@@ -2,6 +2,7 @@ package com.example.restaurant;
 
 import com.alibaba.fastjson.parser.SymbolTable;
 import com.example.restaurant.controllers.BookingController;
+import com.example.restaurant.controllers.LoginController;
 import com.example.restaurant.controllers.SearchingController;
 import com.example.restaurant.entities.Booking;
 import com.example.restaurant.entities.Table;
@@ -45,6 +46,8 @@ public class MapperTest {
     BookingController bookingController;
     @Autowired
     BookingService bookingService;
+    @Autowired
+    LoginController loginController;
     @Autowired
     TableMapper tableMapper;
     @Autowired
@@ -113,7 +116,9 @@ public class MapperTest {
         Map<String,String> info = new HashMap<>();
         info.put("email","zql20000924@163.com");
         info.put("password","Zql20000924");
-        System.out.println(searchingController.getAllRestaurant("o"));
+        info.put("fullName","Qinglin");
+        loginController.signUpAccount(info);
+
 
 
     }

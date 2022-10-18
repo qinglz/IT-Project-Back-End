@@ -5,8 +5,8 @@
 #    port:6379
 spring:
   datasource:
-    url: jdbc:mysql://us-cdbr-east-06.cleardb.net:3306/heroku_bac2dbcc060b181
-    username: "b08eacd0f48eea"
-    password: "18556bdc77e5aaf"
+    url: jdbc:mysql://restbook0.c0w9alt8cqnn.ap-southeast-2.rds.amazonaws.com:3306/restbook
+    username: "zql20000924"
+    password: "1q2w3e4r5t"
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    GRANT ALL PRIVILEGES ON *.* TO 'b08eacd0f48eea'@'%' IDENTIFIED BY '18556bdc77e5aaf';

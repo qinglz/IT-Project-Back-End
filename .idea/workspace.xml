@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="87675db5-94b3-461b-b92c-02eb5c494373" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +51,9 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -69,7 +70,7 @@
       <recent name="com.example.restaurant.mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.RestaurantApplication">
+  <component name="RunManager" selected="JUnit.MapperTest.updateTableTest">
     <configuration name="MapperTest.bookingDtoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Restaurant" />
       <extension name="coverage">
@@ -221,6 +222,7 @@
       <workItem from="1665975496249" duration="660000" />
       <workItem from="1666003233291" duration="2207000" />
       <workItem from="1666011331252" duration="3332000" />
+      <workItem from="1666088914090" duration="950000" />
     </task>
     <servers />
   </component>
