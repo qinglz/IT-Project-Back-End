@@ -8,6 +8,8 @@ import com.example.restaurant.mapper.BookingMapper;
 import com.example.restaurant.mapper.LoginMapper;
 import com.example.restaurant.mapper.TableMapper;
 import com.example.restaurant.services.BookingService;
+import com.example.restaurant.services.LoginService;
+import com.example.restaurant.services.SearchingService;
 import com.example.restaurant.utils.JwtUtil;
 import com.example.restaurant.utils.TableAllocation;
 import com.example.restaurant.utils.TableCapacityComparator;
@@ -23,7 +25,9 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 public class MapperTest {
@@ -32,6 +36,10 @@ public class MapperTest {
     private LoginMapper loginMapper;
     @Autowired
     private BookingMapper bookingMapper;
+    @Autowired
+    private LoginService loginService;
+    @Autowired
+    SearchingService searchingService;
     @Autowired
     BookingController bookingController;
     @Autowired
@@ -99,6 +107,12 @@ public class MapperTest {
 
     @Test
     void updateTableTest(){
+        Map<String,String> info = new HashMap<>();
+        info.put("email","zql20000924@163.com");
+        info.put("password","Zql20000924");
+
+        String s = "chicken";
+        tableMapper.updateATable("100","200","64");
 
 
     }

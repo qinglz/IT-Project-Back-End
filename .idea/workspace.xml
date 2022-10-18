@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="87675db5-94b3-461b-b92c-02eb5c494373" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/restaurant/MapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/restaurant/MapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/restaurant/MapperTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/restaurant/MapperTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,16 +51,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "spring.configuration.checksum": "e197a9ccf40b776f31368105d1aa8c4b"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="dart.analysis.tool.window.visible" value="false" />
+  </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -71,7 +69,7 @@
       <recent name="com.example.restaurant.mapper" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.RestaurantApplication">
+  <component name="RunManager" selected="JUnit.MapperTest.updateTableTest">
     <configuration name="MapperTest.bookingDtoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Restaurant" />
       <extension name="coverage">
@@ -99,22 +97,6 @@
       <option name="PACKAGE_NAME" value="com.example.restaurant" />
       <option name="MAIN_CLASS_NAME" value="com.example.restaurant.MapperTest" />
       <option name="METHOD_NAME" value="testAllocate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MapperTest.testAvailableTableSearching" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Restaurant" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.restaurant.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.restaurant" />
-      <option name="MAIN_CLASS_NAME" value="com.example.restaurant.MapperTest" />
-      <option name="METHOD_NAME" value="testAvailableTableSearching" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,6 +134,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MapperTest.updateTableTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Restaurant" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.restaurant.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.restaurant" />
+      <option name="MAIN_CLASS_NAME" value="com.example.restaurant.MapperTest" />
+      <option name="METHOD_NAME" value="updateTableTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RestaurantApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="Restaurant" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.restaurant.RestaurantApplication" />
@@ -161,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MapperTest.updateTableTest" />
         <item itemvalue="JUnit.MapperTest.testJWT" />
         <item itemvalue="JUnit.MapperTest.bookingDtoTest" />
         <item itemvalue="JUnit.MapperTest.testAllocate" />
         <item itemvalue="JUnit.MapperTest.testComparator" />
-        <item itemvalue="JUnit.MapperTest.testAvailableTableSearching" />
       </list>
     </recent_temporary>
   </component>
