@@ -20,6 +20,15 @@ public class BookingDto {
     private LocalDateTime dateTime;
     private int tableNumber;
     private int numPeople;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getRestaurantName() {
         return restaurantName;

@@ -123,7 +123,7 @@ public class BookingServiceImp implements BookingService {
                 booking.setNumPeople(numPeople);
                 booking.setRestId(restId);
                 bookingMapper.insert(booking);
-                BookingDto bookingDto = new BookingDto(restName, costumerName, phoneNumber, email, dateTime, table.getTableNumber(), numPeople);
+                BookingDto bookingDto = new BookingDto(restName, costumerName, phoneNumber, email, dateTime, table.getTableNumber(), numPeople,booking.getId());
                 bookingDtos.add(bookingDto);
             }
         } catch (Exception e) {
