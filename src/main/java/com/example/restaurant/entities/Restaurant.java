@@ -1,6 +1,7 @@
 package com.example.restaurant.entities;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,7 @@ public class Restaurant {
     @TableId(type = IdType.AUTO)
     private int id;
     //used for searching only
+    @TableField(exist = false)
     private double similarity;
     private int ownerId;
     private String name;
