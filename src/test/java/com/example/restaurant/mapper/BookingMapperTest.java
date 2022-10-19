@@ -43,6 +43,6 @@ class BookingMapperTest {
 
     @Test
     void getBookingByUserAndTime() {
-        List<Booking> bookings = bookingMapper.getBookingByUserAndTime("0412212158",t,t.plusHours(1L));
+
     }
 }
