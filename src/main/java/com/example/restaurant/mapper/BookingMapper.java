@@ -45,5 +45,10 @@ public interface BookingMapper extends BaseMapper<Booking> {
     public Integer getUsedCapacity(@Param("restId") int restId, @Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
     @Select("SELECT * from sys_booking where customer_phone_number=#{phone} and\n" +
             "date_time BETWEEN #{from} and #{to};")
-    public List<Booking> getBookingByUserAndTime(@Param("phone") String phone, @Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
+    public List<Booking> getBookingByUserPhoneAndTime(@Param("phone") String phone, @Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
+
+    @Select("SELECT * from sys_booking where customer_email=#{email} and\n" +
+            "date_time BETWEEN #{from} and #{to};")
+    public List<Booking> getBookingByUserEmailAndTime(@Param("email") String email, @Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
+
 }

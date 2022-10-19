@@ -168,10 +168,12 @@ public class BookingServiceImp implements BookingService {
     @Override
     public boolean notOverBook(Map<String, String> bookingInfo) {
         String phoneNumber = bookingInfo.get("phoneNumber");
+        String email = bookingInfo.get("email");
         LocalDateTime dateTime = LocalDateTime.parse(bookingInfo.get("dateTime"));
         LocalDateTime from = dateTime.minus(timeSpan);
         LocalDateTime to = dateTime.plus(timeSpan);
-        List<Booking> overlapBookings = bookingMapper.getBookingByUserAndTime(phoneNumber,from,to);
-        return overlapBookings.isEmpty();
+        List<Booking> overlapBookings1 = bookingMapper.getBookingByUserPhoneAndTime(phoneNumber,from,to);
+        List<Booking> overlapBookings2 = bookingMapper.getBookingByUserEmailAndTime(email,from,to);
+        return overlapBookings1.isEmpty()&&overlapBookings2.isEmpty();
     }
 }
