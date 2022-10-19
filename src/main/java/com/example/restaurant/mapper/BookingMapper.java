@@ -32,7 +32,7 @@ public interface BookingMapper extends BaseMapper<Booking> {
     public List<Booking> getBookings();
 
     @Select("SELECT r.`name` as restaurant_name, customer_name, customer_phone_number,customer_email,\n" +
-            "date_time, table_number,num_people\n" +
+            "date_time, table_number,num_people,id\n" +
             "FROM `sys_booking` as b INNER JOIN `sys_table`as t ON\n" +
             "b.table_id = t.id INNER JOIN `sys_restaurant` as r On\n" +
             "t.restaurant_id = r.id where t.restaurant_id = #{restId}")
