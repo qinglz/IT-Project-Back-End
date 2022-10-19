@@ -9,4 +9,4 @@ spring:
     username: "zql20000924"
     password: "1q2w3e4r5t"
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    GRANT ALL PRIVILEGES ON *.* TO 'b08eacd0f48eea'@'%' IDENTIFIED BY '18556bdc77e5aaf';
+

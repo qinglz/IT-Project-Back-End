@@ -80,12 +80,13 @@ public class BookingDto {
     @Override
     public String toString() {
         return "Here is the booking information:" +
-                "Restaurant Name='" + restaurantName + '\'' +
-                ",   Customer Name='" + customerName + '\'' +
-                ",   Customer Phone Number='" + customerPhoneNumber + '\'' +
-                ",   Customer Email='" + customerEmail + '\'' +
-                ",   Date Time=" + TimeUtil.toSqlDateTime(dateTime) +
-                ",   Table Number=" + tableNumber +
-                ",   Num People=" + numPeople;
+                "Restaurant Name : '" + restaurantName + '\'' +
+                ",   Customer Name : '" + customerName + '\'' +
+                ",   Customer Phone Number : '" + customerPhoneNumber + '\'' +
+                ",   Customer Email : '" + customerEmail + '\'' +
+                ",   Date Time : " + TimeUtil.toSqlDateTime(dateTime) +
+                ",   Table Number : " + tableNumber +
+                ",   Num People : " + numPeople +
+                ". Thanks for using Restbook.";
     }
 }

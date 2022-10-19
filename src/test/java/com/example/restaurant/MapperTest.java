@@ -12,6 +12,7 @@ import com.example.restaurant.mapper.TableMapper;
 import com.example.restaurant.services.BookingService;
 import com.example.restaurant.services.LoginService;
 import com.example.restaurant.services.SearchingService;
+import com.example.restaurant.services.TableService;
 import com.example.restaurant.utils.JwtUtil;
 import com.example.restaurant.utils.TableAllocation;
 import com.example.restaurant.utils.TableCapacityComparator;
@@ -50,6 +51,8 @@ public class MapperTest {
     LoginController loginController;
     @Autowired
     TableMapper tableMapper;
+    @Autowired
+    TableService tableService;
     @Autowired
     SearchingController searchingController;
     @Test
@@ -117,7 +120,8 @@ public class MapperTest {
         info.put("email","zql20000924@163.com");
         info.put("password","Zql20000924");
         info.put("fullName","Qinglin");
-        System.out.println(loginController.login(info));
+        System.out.println();
+
 
 
 

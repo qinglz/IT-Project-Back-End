@@ -93,7 +93,7 @@ public class BookingServiceImp implements BookingService {
 
         LocalDateTime dateTime = LocalDateTime.parse(dateTimes);
         int restId = Integer.parseInt(restIds);
-        int numPeople = Integer.parseInt(numPeoples);
+            int numPeople = Integer.parseInt(numPeoples);
         Boolean stillAvailable = availableAt(restId, numPeople, dateTime);
         if (!stillAvailable) {
             return Result.error("Oops, the tables have just booked by others!");
@@ -130,19 +130,31 @@ public class BookingServiceImp implements BookingService {
             return Result.error("Fail to book the restaurant, please try again.");
         }
 
-//        Not use email for now.
-//        String subject = "You got a new booking";
-//        String message = "Dear business owner of " + restName + ", you got some new bookings!\n" + bookingDtos;
-//        String restOwnerEmail = searchingMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
 
-//        EmailDetails emailDetails = new EmailDetails(restOwnerEmail, message, subject);
-//        String smsMessage = "Dear customer, your booking has been confirmed. \n" + bookingDtos;
+        String subject = "You got a new booking";
+        String businessUserMessage = "Dear business owner of " + restName + ", you got some new bookings!\n" + bookingDtos;
+        String restOwnerEmail = restaurantMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
+
+        EmailDetails businessOwnerEmailDetails = new EmailDetails(restOwnerEmail, businessUserMessage, subject);
+        String customerMessage = "Dear customer, your booking has been confirmed. \n" + bookingDtos;
+        EmailDetails customerEmailDetails = new EmailDetails(email,customerMessage,subject);
 //        SMSDetails smsDetails = new SMSDetails("+61" + phoneNumber, smsMessage);
-//        try{
-//        emailSender.sendEmail(emailDetails);
-//        }catch (Exception e){
-//            return Result.partialError(bookingDtos, "Add booking successfully but fail to send email");
-//        }
+        try{
+            emailSender.sendEmail(businessOwnerEmailDetails);
+        }catch (Exception e){
+            try {
+                emailSender.sendEmail(customerEmailDetails);
+            }catch (Exception exception){
+                return Result.partialError(bookingDtos,"Add booking successfully but fail to send email to both business owner and customer");
+            }
+            return Result.partialError(bookingDtos, "Add booking successfully but fail to send email to business owner.");
+        }
+
+        try{
+            emailSender.sendEmail(customerEmailDetails);
+        }catch (Exception e){
+            return Result.partialError(bookingDtos, "Add booking successfully but fail to send email to customer.");
+        }
 //        try {
 //            smsSender.sendSMS(smsDetails);
 //        } catch (Exception e) {
