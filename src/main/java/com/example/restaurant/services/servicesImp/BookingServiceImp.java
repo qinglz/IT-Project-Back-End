@@ -132,11 +132,11 @@ public class BookingServiceImp implements BookingService {
 
 
         String subject = "You got a new booking";
-        String businessUserMessage = "Dear business owner of " + restName + ", you got some new bookings!\n" + bookingDtos;
+        String businessUserMessage = "Dear business owner of " + restName + ", you got some new bookings!\n" + bookingDtos+"\nThanks for using RestBook";
         String restOwnerEmail = restaurantMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
 
         EmailDetails businessOwnerEmailDetails = new EmailDetails(restOwnerEmail, businessUserMessage, subject);
-        String customerMessage = "Dear customer, your booking has been confirmed. \n" + bookingDtos;
+        String customerMessage = "Dear customer, your booking has been confirmed. \n" + bookingDtos + "\nThanks for using RestBook";
         EmailDetails customerEmailDetails = new EmailDetails(email,customerMessage,subject);
 //        SMSDetails smsDetails = new SMSDetails("+61" + phoneNumber, smsMessage);
         try{

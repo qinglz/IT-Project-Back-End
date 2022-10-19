@@ -86,7 +86,6 @@ public class BookingDto {
                 ",   Customer Email : '" + customerEmail + '\'' +
                 ",   Date Time : " + TimeUtil.toSqlDateTime(dateTime) +
                 ",   Table Number : " + tableNumber +
-                ",   Num People : " + numPeople +
-                ". Thanks for using Restbook.";
+                ",   Num People : " + numPeople + ".";
     }
 }
