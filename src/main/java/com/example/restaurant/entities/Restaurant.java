@@ -24,8 +24,9 @@ public class Restaurant {
     private String name;
     private String address;
     private int averageBill;
-    private String photoURL;
+    private String photo;
     private double rating;
+    @TableField(exist = false)
     private String[] tags;
     private int numStaff;
     private int capacity;
@@ -98,11 +99,11 @@ public class Restaurant {
     }
 
     public String getPhotoURL() {
-        return photoURL;
+        return photo;
     }
 
     public void setPhotoURL(String photoURL) {
-        this.photoURL = photoURL;
+        this.photo = photoURL;
     }
 
     public double getRating() {
