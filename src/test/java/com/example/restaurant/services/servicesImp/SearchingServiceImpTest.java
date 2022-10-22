@@ -1,24 +1,18 @@
 package com.example.restaurant.services.servicesImp;
 
-import com.example.restaurant.services.SearchingService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
 class SearchingServiceImpTest {
     @Autowired
-    SearchingService searchingService;
-
-    @Test
-    void getAllRestaurant() {
-        System.out.println(searchingService.getAllRestaurant());
-
-
-    }
-
+    SearchingServiceImp searchingServiceImp;
     @Test
     void findRestaurantByName() {
-        System.out.println(searchingService.findRestaurantByName("Chicken"));
+        System.out.println(searchingServiceImp.findRestaurantByName("Can I get some Chicken"));
+        //Test passed. The key word "chicken" show all restaurant with name containing chicken.
+
     }
 }

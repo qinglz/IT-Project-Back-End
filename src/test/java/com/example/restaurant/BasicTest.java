@@ -1,10 +1,8 @@
 package com.example.restaurant;
 
-import com.alibaba.fastjson.parser.SymbolTable;
 import com.example.restaurant.controllers.BookingController;
 import com.example.restaurant.controllers.LoginController;
 import com.example.restaurant.controllers.SearchingController;
-import com.example.restaurant.entities.Booking;
 import com.example.restaurant.entities.Table;
 import com.example.restaurant.mapper.BookingMapper;
 import com.example.restaurant.mapper.LoginMapper;
@@ -20,12 +18,8 @@ import com.example.restaurant.utils.TimeUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
-public class MapperTest {
+public class BasicTest {
 
     @Autowired
     private LoginMapper loginMapper;

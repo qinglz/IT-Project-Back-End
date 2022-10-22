@@ -16,8 +16,8 @@ public interface RestaurantMapper extends BaseMapper<Restaurant> {
     @Select("select * from sys_restaurant where name REGEXP #{name} and deleted = 0;")
     List<Restaurant> searchRestaurantByName(@Param("name") String name);
 
-    @Select("select * from sys_restaurant where address = #{address};")
-    List<Restaurant> checkRestaurantByAddress(@Param("address") String address);
+//    @Select("select * from sys_restaurant where address = #{address};")
+//    List<Restaurant> checkRestaurantByAddress(@Param("address") String address);
 
     @Select("select * from sys_restaurant where id = #{id};")
     Restaurant findRestaurantById(@Param("id") String id);

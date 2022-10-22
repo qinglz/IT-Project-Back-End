@@ -28,8 +28,6 @@ public interface BookingMapper extends BaseMapper<Booking> {
     public Integer getAvailableCapacity(@Param("restId") int restId, @Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
 
 
-    @Select("Select * from sys_booking")
-    public List<Booking> getBookings();
 
     @Select("SELECT r.`name` as restaurant_name, customer_name, customer_phone_number,customer_email,\n" +
             "date_time, table_number,num_people,b.id as id\n" +
