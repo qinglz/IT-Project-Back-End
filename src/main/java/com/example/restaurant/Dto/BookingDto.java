@@ -20,6 +20,15 @@ public class BookingDto {
     private LocalDateTime dateTime;
     private int tableNumber;
     private int numPeople;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getRestaurantName() {
         return restaurantName;
@@ -80,12 +89,12 @@ public class BookingDto {
     @Override
     public String toString() {
         return "Here is the booking information:" +
-                "Restaurant Name='" + restaurantName + '\'' +
-                ",   Customer Name='" + customerName + '\'' +
-                ",   Customer Phone Number='" + customerPhoneNumber + '\'' +
-                ",   Customer Email='" + customerEmail + '\'' +
-                ",   Date Time=" + TimeUtil.toSqlDateTime(dateTime) +
-                ",   Table Number=" + tableNumber +
-                ",   Num People=" + numPeople;
+                "Restaurant Name : '" + restaurantName + '\'' +
+                ",   Customer Name : '" + customerName + '\'' +
+                ",   Customer Phone Number : '" + customerPhoneNumber + '\'' +
+                ",   Customer Email : '" + customerEmail + '\'' +
+                ",   Date Time : " + TimeUtil.toSqlDateTime(dateTime) +
+                ",   Table Number : " + tableNumber +
+                ",   Num People : " + numPeople + ".";
     }
 }

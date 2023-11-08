@@ -20,6 +20,24 @@ public class Table {
     private int tableNumber;
     private String type;
     private int deleted;
+    private double xpos;
+    private double ypos;
+
+    public double getXpos() {
+        return xpos;
+    }
+
+    public void setXpos(double xpos) {
+        this.xpos = xpos;
+    }
+
+    public double getYpos() {
+        return ypos;
+    }
+
+    public void setYpos(double ypos) {
+        this.ypos = ypos;
+    }
 
     public int getDeleted() {
         return deleted;
@@ -29,11 +47,13 @@ public class Table {
         this.deleted = deleted;
     }
 
-    public Table(int restaurantId, int tableNumber, int capacity){
+    public Table(int restaurantId, int tableNumber, int capacity, double xpos,double ypos){
         this.restaurantId =restaurantId;
         this.tableNumber = tableNumber;
         this.capacity = capacity;
         this.deleted = 0;
+        this.xpos = xpos;
+        this.ypos =ypos;
     }
 
     public int getId() {

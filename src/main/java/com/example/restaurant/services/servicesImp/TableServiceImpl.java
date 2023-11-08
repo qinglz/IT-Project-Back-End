@@ -37,10 +37,10 @@ public class TableServiceImpl implements TableService {
         }
         List<Integer> deletedNumber = new ArrayList<>();
         for (Map<String,String> k : info){
-            deletedNumber.add(Integer.parseInt(k.get("tableNumber")));
+            deletedNumber.add(Integer.parseInt(k.get("dbid")));
         }
         try{
-            tableMapper.deleteCertainTables(Integer.parseInt(info.get(0).get("restId")),deletedNumber);
+            tableMapper.deleteCertainTables(deletedNumber);
 
         }catch (Exception e){
             System.out.println(e);
@@ -56,7 +56,7 @@ public class TableServiceImpl implements TableService {
         }
         List<Table> tables = new ArrayList<>();
         for (Map<String,String> k : info){
-            Table newTable = new Table(Integer.parseInt(k.get("restId")),Integer.parseInt(k.get("tableNumber")), Integer.parseInt(k.get("capacity")));
+            Table newTable = new Table(Integer.parseInt(k.get("restId")),Integer.parseInt(k.get("tableNumber")), Integer.parseInt(k.get("capacity")),Double.valueOf(k.get("xpos")),Double.valueOf(k.get("ypos")));
             newTable.setDeleted(0);
             tables.add(newTable);
         }
@@ -79,6 +79,30 @@ public class TableServiceImpl implements TableService {
     public void substitution(Table table) {
         LocalDateTime now = LocalDateTime.now();
         tableMapper.substitute(String.valueOf(table.getId()),String.valueOf(table.getRestaurantId()),String.valueOf(table.getTableNumber()),now);
+
+    }
+
+    public Result updateTables(List<Map<String,String>> info){
+        if (info.isEmpty()){
+            return Result.success(null);
+        }
+        try {
+            for (Map<String ,String>k : info){
+                String id = k.get("dbid");
+                String xpos = k.get("xpos");
+                String ypos = k.get("ypos");
+                tableMapper.updateATable(xpos,ypos,id);
+
+            }
+        }catch (Exception e){
+            return Result.error("Update failed.");
+        }
+        return Result.success("Update successfully");
+
+
+
+
+
 
     }
 }

@@ -1,6 +1,7 @@
 package com.example.restaurant.entities;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -17,13 +18,15 @@ public class Restaurant {
     @TableId(type = IdType.AUTO)
     private int id;
     //used for searching only
+    @TableField(exist = false)
     private double similarity;
     private int ownerId;
     private String name;
     private String address;
     private int averageBill;
-    private String photoURL;
+    private String photo;
     private double rating;
+    @TableField(exist = false)
     private String[] tags;
     private int numStaff;
     private int capacity;
@@ -96,11 +99,11 @@ public class Restaurant {
     }
 
     public String getPhotoURL() {
-        return photoURL;
+        return photo;
     }
 
     public void setPhotoURL(String photoURL) {
-        this.photoURL = photoURL;
+        this.photo = photoURL;
     }
 
     public double getRating() {

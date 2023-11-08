@@ -9,4 +9,5 @@ public interface TableService {
     public Result getTableByRestaurant(String id);
     public Result deleteTables(List<Map<String, String>> info);
     public Result addTables(List<Map<String,String>> info);
+    public Result updateTables(List<Map<String,String>> info);
 }

@@ -1,12 +1,16 @@
 package com.example.restaurant;
 
-import com.alibaba.fastjson.parser.SymbolTable;
 import com.example.restaurant.controllers.BookingController;
-import com.example.restaurant.entities.Booking;
+import com.example.restaurant.controllers.LoginController;
+import com.example.restaurant.controllers.SearchingController;
 import com.example.restaurant.entities.Table;
 import com.example.restaurant.mapper.BookingMapper;
 import com.example.restaurant.mapper.LoginMapper;
+import com.example.restaurant.mapper.TableMapper;
 import com.example.restaurant.services.BookingService;
+import com.example.restaurant.services.LoginService;
+import com.example.restaurant.services.SearchingService;
+import com.example.restaurant.services.TableService;
 import com.example.restaurant.utils.JwtUtil;
 import com.example.restaurant.utils.TableAllocation;
 import com.example.restaurant.utils.TableCapacityComparator;
@@ -14,29 +18,37 @@ import com.example.restaurant.utils.TimeUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
-public class MapperTest {
+public class BasicTest {
 
     @Autowired
     private LoginMapper loginMapper;
     @Autowired
-    private RedisTemplate redisTemplate;
-    @Autowired
     private BookingMapper bookingMapper;
+    @Autowired
+    private LoginService loginService;
+    @Autowired
+    SearchingService searchingService;
     @Autowired
     BookingController bookingController;
     @Autowired
     BookingService bookingService;
+    @Autowired
+    LoginController loginController;
+    @Autowired
+    TableMapper tableMapper;
+    @Autowired
+    TableService tableService;
+    @Autowired
+    SearchingController searchingController;
     @Test
     public void TestBCryptPasswordEncoder(){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -67,19 +79,6 @@ public class MapperTest {
 
 
     }
-    @Test
-    public void testRedisTemplate(){
-        String s = redisTemplate.opsForValue().get("aaa").toString();
-        System.out.println(s);
-    }
-    @Test
-    public void deleteValue(){
-        redisTemplate.delete("name");
-    }
-    @Test
-    public void setNewValue(){
-        redisTemplate.opsForValue().set("aaa","dawdsadwdsdsds");
-    }
     @Test void testAvailableTableSearching(){
         LocalDateTime localDateTime1 = LocalDateTime.of(2022,9,22,13,30,0);
         LocalDateTime localDateTime2 = LocalDateTime.of(2022,9,23,15,30,0);
@@ -107,6 +106,19 @@ public class MapperTest {
     @Test
     void bookingDtoTest(){
         System.out.println(bookingMapper.getBookingsByRestId(1));
+    }
+
+    @Test
+    void updateTableTest(){
+        Map<String,String> info = new HashMap<>();
+        info.put("email","zql20000924@163.com");
+        info.put("password","Zql20000924");
+        info.put("fullName","Qinglin");
+        System.out.println();
+
+
+
+
     }
 
 }

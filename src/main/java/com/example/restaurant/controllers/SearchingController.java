@@ -32,11 +32,8 @@ public class SearchingController {
      */
     @GetMapping("/findRestaurantByName")
     public Result<List<Restaurant>> getAllRestaurant(@RequestParam("name") String name){
-        List<Restaurant> restaurants = searchingService.findRestaurantByName(name);
-        if(restaurants.size()>0){
-            return Result.success(restaurants);
-        }
-        return Result.error("No Restaurant Found");
+
+        return searchingService.findRestaurantByName(name);
 
 
 

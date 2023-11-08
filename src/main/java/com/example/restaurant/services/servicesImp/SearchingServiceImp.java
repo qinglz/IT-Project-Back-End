@@ -1,5 +1,6 @@
 package com.example.restaurant.services.servicesImp;
 
+import com.example.restaurant.Result;
 import com.example.restaurant.entities.Restaurant;
 import com.example.restaurant.mapper.RestaurantMapper;
 import com.example.restaurant.services.SearchingService;
@@ -22,20 +23,27 @@ public class SearchingServiceImp implements SearchingService {
     }
 
     @Override
-    public List<Restaurant> findRestaurantByName(String name) {
-        List<String> parts = List.of(name.split(" "));
-        String regex = ".*(";
-        for(String part : parts){
-            regex +=part+"|";
+    public Result findRestaurantByName(String name) {
+        try {
+            List<String> parts = List.of(name.split(" "));
+            String regex = ".*(";
+            for (String part : parts) {
+                regex += part + "|";
+            }
+            regex = regex.substring(0, regex.length() - 1);
+            regex += ").*";
+            List<Restaurant> restaurants = restaurantMapper.searchRestaurantByName(regex);
+            Cosine cosine = new Cosine();
+            for (Restaurant r : restaurants) {
+                r.setSimilarity(cosine.similarity(r.getName(), name));
+            }
+            Collections.sort(restaurants, new RestaurantSimilarityComparer());
+            if (restaurants.isEmpty()){
+                return Result.error("No restaurant found.");
+            }
+            return Result.success(restaurants);
+        }catch (Exception e){
+            return Result.error(e.getMessage());
         }
-        regex = regex.substring(0,regex.length()-1);
-        regex+=").*";
-        List<Restaurant> restaurants = restaurantMapper.searchRestaurantByName(regex);
-        Cosine cosine = new Cosine();
-        for(Restaurant r :restaurants){
-            r.setSimilarity(cosine.similarity(r.getName(),name));
-        }
-        Collections.sort(restaurants, new RestaurantSimilarityComparer());
-        return restaurants;
     }
 }

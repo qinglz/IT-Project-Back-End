@@ -21,8 +21,8 @@ import java.util.*;
 @Service
 public class BookingServiceImp implements BookingService {
     private final Duration timeSpan = Duration.ofMinutes(119L);
-    private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.][a-z]*$";
-    private final String phoneFormat = "^\\d{9}$";
+    private final String emailFormat = "^[a-z0-9]*[@][a-z0-9]*[.]*[a-z]*$";
+    private final String phoneFormat = "^0\\d{9}$";
     private final String timeFormat = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$";
     private final String nameFormat = "^[A-Z a-z]+$";
 
@@ -93,7 +93,7 @@ public class BookingServiceImp implements BookingService {
 
         LocalDateTime dateTime = LocalDateTime.parse(dateTimes);
         int restId = Integer.parseInt(restIds);
-        int numPeople = Integer.parseInt(numPeoples);
+            int numPeople = Integer.parseInt(numPeoples);
         Boolean stillAvailable = availableAt(restId, numPeople, dateTime);
         if (!stillAvailable) {
             return Result.error("Oops, the tables have just booked by others!");
@@ -123,26 +123,38 @@ public class BookingServiceImp implements BookingService {
                 booking.setNumPeople(numPeople);
                 booking.setRestId(restId);
                 bookingMapper.insert(booking);
-                BookingDto bookingDto = new BookingDto(restName, costumerName, phoneNumber, email, dateTime, table.getTableNumber(), numPeople);
+                BookingDto bookingDto = new BookingDto(restName, costumerName, phoneNumber, email, dateTime, table.getTableNumber(), numPeople,booking.getId());
                 bookingDtos.add(bookingDto);
             }
         } catch (Exception e) {
             return Result.error("Fail to book the restaurant, please try again.");
         }
 
-//        Not use email for now.
-//        String subject = "You got a new booking";
-//        String message = "Dear business owner of " + restName + ", you got some new bookings!\n" + bookingDtos;
-//        String restOwnerEmail = searchingMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
 
-//        EmailDetails emailDetails = new EmailDetails(restOwnerEmail, message, subject);
-//        String smsMessage = "Dear customer, your booking has been confirmed. \n" + bookingDtos;
+        String subject = "You got a new booking";
+        String businessUserMessage = "Dear business owner of " + restName + ", you got some new bookings!\n" + bookingDtos+"\nThanks for using RestBook";
+        String restOwnerEmail = restaurantMapper.findBusinessUserById(String.valueOf(restaurant.getOwnerId())).getEmail();
+
+        EmailDetails businessOwnerEmailDetails = new EmailDetails(restOwnerEmail, businessUserMessage, subject);
+        String customerMessage = "Dear customer, your booking has been confirmed. \n" + bookingDtos + "\nThanks for using RestBook";
+        EmailDetails customerEmailDetails = new EmailDetails(email,customerMessage,subject);
 //        SMSDetails smsDetails = new SMSDetails("+61" + phoneNumber, smsMessage);
-//        try{
-//        emailSender.sendEmail(emailDetails);
-//        }catch (Exception e){
-//            return Result.partialError(bookingDtos, "Add booking successfully but fail to send email");
-//        }
+        try{
+            emailSender.sendEmail(businessOwnerEmailDetails);
+        }catch (Exception e){
+            try {
+                emailSender.sendEmail(customerEmailDetails);
+            }catch (Exception exception){
+                return Result.partialError(bookingDtos,"Add booking successfully but fail to send email to both business owner and customer");
+            }
+            return Result.partialError(bookingDtos, "Add booking successfully but fail to send email to business owner.");
+        }
+
+        try{
+            emailSender.sendEmail(customerEmailDetails);
+        }catch (Exception e){
+            return Result.partialError(bookingDtos, "Add booking successfully but fail to send email to customer.");
+        }
 //        try {
 //            smsSender.sendSMS(smsDetails);
 //        } catch (Exception e) {
@@ -156,10 +168,12 @@ public class BookingServiceImp implements BookingService {
     @Override
     public boolean notOverBook(Map<String, String> bookingInfo) {
         String phoneNumber = bookingInfo.get("phoneNumber");
+        String email = bookingInfo.get("email");
         LocalDateTime dateTime = LocalDateTime.parse(bookingInfo.get("dateTime"));
         LocalDateTime from = dateTime.minus(timeSpan);
         LocalDateTime to = dateTime.plus(timeSpan);
-        List<Booking> overlapBookings = bookingMapper.getBookingByUserAndTime(phoneNumber,from,to);
-        return overlapBookings.isEmpty();
+        List<Booking> overlapBookings1 = bookingMapper.getBookingByUserPhoneAndTime(phoneNumber,from,to);
+        List<Booking> overlapBookings2 = bookingMapper.getBookingByUserEmailAndTime(email,from,to);
+        return overlapBookings1.isEmpty()&&overlapBookings2.isEmpty();
     }
 }

@@ -46,7 +46,7 @@ public class RestaurantManageServiceImp implements RestaurantManageService {
 //            }
             restaurantMapper.insert(restaurant);
         }catch (Exception e) {
-            return Result.error("Fail to create restaurant.");
+            return Result.error("Fail to add new restaurant.");
 
         }
 //        Not use email for now.

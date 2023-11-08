@@ -34,7 +34,7 @@ public class BookingController {
      *             HH for hour(in 24), mm for minutes, ss for second.
      * @return this method will return a result type that show whether there's table for a customer.
      */
-    @GetMapping("/checkAvailability")
+    @PostMapping("/checkAvailability")
     public Result checkAvailability(@RequestBody Map<String,String> info){
         if (bookingService.availableAt(Integer.parseInt(info.get("restId")),Integer.parseInt(info.get("numPeople")),LocalDateTime.parse(info.get("dateTime")))){
             return Result.success("We got tables for you!");
